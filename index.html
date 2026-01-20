@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ISMAEL PGL | Creative Studio</title>
+    <title>ISMAEL PGL | Arquitecto Digital</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
     <div class="noise"></div>
 
     <nav>
-        <div class="logo">IPGL__ST.</div>
+        <div class="logo">ISMAEL PGL.</div>
         <div class="menu">
-            <a href="#work">Work</a>
-            <a href="#lab">Lab</a>
-            <a href="#contact" class="contact-btn">Start Project</a>
+            <a href="#work">Proyectos</a>
+            <a href="#about">Sobre mí</a>
+            <a href="#contact" class="contact-btn">Hablemos</a>
         </div>
     </nav>
 
@@ -26,38 +28,90 @@
             <div class="badge">
                 <span class="dot"></span> DISPONIBLE PARA NUEVOS RETOS
             </div>
-            <h1>DIGITAL<br>REALITY<br>ARCHITECT</h1>
+            <h1>ARQUITECTO<br>DE REALIDAD<br>DIGITAL</h1>
             <p>
-                Transformo negocios locales en experiencias digitales de alto rendimiento. 
-                Diseño, Inteligencia Artificial y Estrategia.
+                Diseño experiencias web inmersivas e integro Inteligencia Artificial para potenciar negocios locales y marcas del futuro.
             </p>
             <div class="cta-container">
-                <button class="primary-btn">Ver Proyectos</button>
-                <button class="secondary-btn">Sobre mí</button>
+                <button class="primary-btn">VER PROYECTOS</button>
+                <button class="secondary-btn">SERVICIOS</button>
             </div>
         </div>
 
         <div class="hero-3d">
             <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.59/build/spline-viewer.js"></script>
-            <spline-viewer url="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode"></spline-viewer>
+            
+            <spline-viewer url="https://prod.spline.design/iWJ580Yq7-K3N8dD/scene.splinecode"></spline-viewer>
         </div>
     </main>
 
     <div class="bottom-bar">
         <div class="stat">
             <span>UBICACIÓN</span>
-            <p>Global / Remote</p>
+            <p>Sevilla, España / Remoto</p>
         </div>
         <div class="stat">
-            <span>TECNOLOGÍA</span>
-            <p>AI / WebGL / Next.js</p>
+            <span>ESPECIALIDAD</span>
+            <p>IA / WebGL / Diseño Ético</p>
         </div>
         <div class="scroll-indicator">
             SCROLL PARA EXPLORAR ↓
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="script.js"></script>
+    <section id="work" class="projects-section">
+        <div class="section-header">
+            <h2>PROYECTOS <span class="year">2026</span></h2>
+        </div>
+
+        <div class="projects-grid">
+            <div class="project-card large">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2000" alt="Viajes">
+                    <div class="overlay"></div>
+                </div>
+                <div class="card-info">
+                    <h3>NOVA VIAJES</h3>
+                    <p>Planificador Turístico con IA</p>
+                    <div class="tags">
+                        <span>Web App</span>
+                        <span>Automatización</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?q=80&w=1000" alt="Mercado">
+                    <div class="overlay"></div>
+                </div>
+                <div class="card-info">
+                    <h3>MERCADO FRESH</h3>
+                    <p>Comercio Local Digital</p>
+                    <div class="tags">
+                        <span>App Progresiva</span>
+                        <span>Sin Comisiones</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1474978528675-4a50a4508dc3?q=80&w=1000" alt="Aceite">
+                    <div class="overlay"></div>
+                </div>
+                <div class="card-info">
+                    <h3>OLIVA CERTIFIED</h3>
+                    <p>Trazabilidad Blockchain</p>
+                    <div class="tags">
+                        <span>Web3 Ética</span>
+                        <span>Calidad</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="./script.js"></script>
 </body>
 </html>
