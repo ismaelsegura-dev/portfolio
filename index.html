@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ismael PGL | Creative Developer 2026</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#0a0a0a',
+                        'neon-purple': '#b026ff',
+                        'neon-blue': '#2691ff',
+                    },
+                    fontFamily: {
+                        'sans': ['Space Grotesk', 'sans-serif'],
+                        'brand': ['Syncopate', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos base y utilidades para efectos especiales */
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden; /* Evita scroll lateral */
+            cursor: none; /* Ocultamos el cursor normal */
+        }
+
+        /* El cursor personalizado */
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: white;
+        }
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+
+        /* Fondo con textura de ruido (Film Grain) */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Gradientes de fondo animados */
+        .gradient-blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 10s infinite ease-in-out;
+            border-radius: 50%;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+
+        /* Clase para el texto revelado */
+        .reveal-text {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-neon-purple selection:text-white">
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <div class="noise-overlay"></div>
+
+    <div class="fixed inset-0 z-0 overflow-hidden">
+        <div class="gradient-blob w-96 h-96 bg-neon-purple top-0 left-1/4 animate-blob"></div>
+        <div class="gradient-blob w-[500px] h-[500px] bg-neon-blue bottom-0 right-1/4 animate-blob" style="animation-delay: 2s;"></div>
+    </div>
+
+    <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-40 mix-blend-difference text-white">
+        <div class="text-xl font-bold tracking-tighter opacity-0 nav-item">IPGL.</div>
+        <div class="hidden md:flex gap-8 text-sm uppercase tracking-widest opacity-0 nav-item">
+            <a href="#" class="hover:text-neon-purple transition-colors">Work</a>
+            <a href="#" class="hover:text-neon-purple transition-colors">Lab</a>
+            <a href="#" class="hover:text-neon-purple transition-colors">Contact</a>
+        </div>
+        <div class="md:hidden opacity-0 nav-item">Menu</div>
+    </nav>
+
+    <main class="relative z-10 w-full h-screen flex flex-col justify-center items-center text-center px-4">
+        
+        <div class="mb-4 overflow-hidden">
+            <p class="hero-subtitle text-sm md:text-base text-gray-400 uppercase tracking-[0.3em] translate-y-full">
+                Creative Web Designer
+            </p>
+        </div>
+
+        <div class="overflow-hidden">
+            <h1 class="hero-title font-brand text-5xl md:text-8xl lg:text-9xl font-bold leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-500 translate-y-full">
+                ISMAEL PGL
+            </h1>
+        </div>
+
+        <div class="mt-8 max-w-xl overflow-hidden">
+            <p class="hero-desc text-gray-300 text-lg md:text-xl font-light translate-y-full">
+                Diseñando el futuro digital con <span class="text-neon-purple">Inteligencia Artificial</span> y experiencias inmersivas desde 2026.
+            </p>
+        </div>
+
+        <div class="mt-12 opacity-0 hero-btn">
+            <a href="#" class="group relative px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-full overflow-hidden transition-all hover:bg-white/20 hover:scale-105 inline-block">
+                <span class="relative z-10 text-sm uppercase tracking-widest font-bold">Ver Proyectos</span>
+                <div class="absolute inset-0 bg-neon-purple opacity-0 group-hover:opacity-20 blur-lg transition-opacity"></div>
+            </a>
+        </div>
+
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        // 1. Lógica del Cursor
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            // El punto sigue al mouse instantáneamente
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            // El círculo exterior tiene un pequeño retraso (smooth)
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Efecto hover en enlaces para el cursor
+        const links = document.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursorOutline.style.width = '60px';
+                cursorOutline.style.height = '60px';
+                cursorOutline.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+            });
+            link.addEventListener('mouseleave', () => {
+                cursorOutline.style.width = '40px';
+                cursorOutline.style.height = '40px';
+                cursorOutline.style.backgroundColor = 'transparent';
+            });
+        });
+
+        // 2. Animaciones de Entrada (GSAP)
+        const tl = gsap.timeline();
+
+        // Secuencia de animación
+        tl.to('.hero-title', { 
+            y: 0, 
+            duration: 1.5, 
+            ease: "power4.out",
+            stagger: 0.1 
+        })
+        .to('.hero-subtitle', { 
+            y: 0, 
+            duration: 1, 
+            ease: "power3.out" 
+        }, "-=1") // Empieza 1 segundo antes de que termine el anterior
+        .to('.hero-desc', { 
+            y: 0, 
+            duration: 1, 
+            ease: "power3.out" 
+        }, "-=0.8")
+        .to('.nav-item', { 
+            opacity: 1, 
+            y: 0, 
+            duration: 1, 
+            stagger: 0.2 
+        }, "-=0.5")
+        .to('.hero-btn', { 
+            opacity: 1, 
+            y: 0, 
+            duration: 1 
+        }, "-=0.5");
+
+    </script>
+</body>
+</html>
