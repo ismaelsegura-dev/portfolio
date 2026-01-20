@@ -2,33 +2,28 @@ document.addEventListener("DOMContentLoaded", () => {
     
     gsap.registerPlugin(ScrollTrigger);
 
-    // --- CÓDIGO DEL CURSOR ---
+    // --- 1. MOVIMIENTO DEL CURSOR ---
     const cursor = document.querySelector('.cursor-dot');
     
-    // Hacemos que la bolita siga al ratón
-    document.addEventListener('mousemove', (e) => {
-        // Usamos GSAP para que el movimiento sea ultra-suave
-        gsap.to(cursor, {
-            x: e.clientX,
-            y: e.clientY,
-            duration: 0.1, // Cuanto más bajo, más rápido sigue
-            ease: "power2.out"
+    if (cursor) { // Verificamos que exista para evitar errores
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.1,
+                ease: "power2.out"
+            });
         });
-    });
+    }
 
-    // ... (aquí sigue el resto de tu código de animaciones y Spline) ...
-    // 0. Registrar Plugins
-    gsap.registerPlugin(ScrollTrigger);
-
-    // --- PARTE 1: Animación de la Portada (Hero) ---
+    // --- 2. ANIMACIÓN PORTADA (HERO) ---
     const tl = gsap.timeline();
-
     tl.from("h1", { y: 100, opacity: 0, duration: 1.5, ease: "power4.out", delay: 0.5 })
       .from("p", { y: 20, opacity: 0, duration: 1, ease: "power3.out" }, "-=1")
       .from(".cta-container button", { y: 20, opacity: 0, stagger: 0.2, duration: 0.8 }, "-=0.8")
       .from(".bottom-bar", { opacity: 0, duration: 1 }, "-=0.5");
 
-    // --- PARTE 2: Animación al bajar (Scroll) ---
+    // --- 3. ANIMACIÓN SCROLL ---
     gsap.utils.toArray('.project-card').forEach((card) => {
         gsap.from(card, {
             scrollTrigger: {
@@ -43,24 +38,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // --- PARTE 3: Ocultar Logo de Spline (HACK) ---
+    // --- 4. OCULTAR LOGO SPLINE ---
     const splineViewer = document.querySelector('spline-viewer');
     if (splineViewer) {
-        // A veces carga tan rápido que el evento 'load' ya pasó, así que verificamos si ya tiene shadowRoot
         const removeLogo = () => {
             const shadowRoot = splineViewer.shadowRoot;
             if (shadowRoot) {
                 const logo = shadowRoot.querySelector('#logo');
-                if (logo) {
-                    logo.style.display = 'none'; // Lo ocultamos
-                    // Opcional: logo.remove(); para borrarlo del todo
-                }
+                if (logo) logo.style.display = 'none';
             }
         };
-
-        // Intentamos borrarlo al cargar
         splineViewer.addEventListener('load', removeLogo);
-        // Por si acaso ya cargó, intentamos borrarlo ya
         setTimeout(removeLogo, 1000);
     }
 });
