@@ -17,14 +17,10 @@
                         'bg-main': '#050505',
                         'neon-purple': '#b026ff',
                         'neon-blue': '#2691ff',
-                        'glass': 'rgba(255, 255, 255, 0.05)',
                     },
                     fontFamily: {
                         'sans': ['Space Grotesk', 'sans-serif'],
                         'brand': ['Syncopate', 'sans-serif'],
-                    },
-                    backgroundImage: {
-                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
                     }
                 }
             }
@@ -32,296 +28,194 @@
     </script>
 
     <style>
-        /* === ESTILOS GLOBALES === */
+        /* BASE */
         body {
             background-color: #050505;
             color: #ffffff;
-            cursor: none; /* Ocultamos el cursor por defecto */
+            cursor: none; /* Cursor personalizado */
             overflow-x: hidden;
         }
 
-        /* === CURSOR PERSONALIZADO === */
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: white;
+        /* CURSOR */
+        .cursor-dot, .cursor-outline {
             position: fixed;
             top: 0; left: 0;
+            transform: translate(-50%, -50%);
             border-radius: 50%;
+            pointer-events: none;
             z-index: 9999;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
         }
-        .cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+        .cursor-dot { width: 8px; height: 8px; background: white; }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.5); transition: width 0.2s, height 0.2s; }
+
+        /* RUIDO / TEXTURA */
+        .noise-overlay {
             position: fixed;
-            top: 0; left: 0;
-            border-radius: 50%;
-            z-index: 9998;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
             pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s, background-color 0.3s;
+            z-index: 40; /* Por encima del fondo, por debajo del contenido */
         }
 
-        /* === TEXTURA DE RUIDO (FILM GRAIN) === */
-        .noise {
+        /* FONDOS ANIMADOS */
+        .blob-bg {
             position: fixed;
-            inset: 0;
-            z-index: 90;
-            opacity: 0.04;
-            pointer-events: none;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
-        /* === GRADIENTES FLOTANTES === */
-        .blob {
-            position: absolute;
-            filter: blur(90px);
-            opacity: 0.5;
             border-radius: 50%;
-            animation: float 10s infinite ease-in-out;
+            filter: blur(80px);
             z-index: 0;
+            opacity: 0.4;
+            animation: floatBlob 10s infinite alternate;
         }
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(-30px, 40px); }
+        @keyframes floatBlob {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, -30px); }
         }
 
-        /* === UTILIDADES === */
-        .clip-text-image {
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-        
-        /* Ocultar scrollbar pero permitir scroll */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #050505; 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #333; 
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555; 
-        }
+        /* TEXTO MARQUEE */
+        .marquee-container { overflow: hidden; white-space: nowrap; }
+        .marquee-content { display: inline-block; animation: marquee 20s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .stroke-text { -webkit-text-stroke: 1px rgba(255,255,255,0.3); color: transparent; }
+
+        /* UTILIDADES VISIBILIDAD (Para evitar flash) */
+        .invisible-start { visibility: hidden; }
     </style>
 </head>
 <body class="antialiased">
 
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
-    <div class="noise"></div>
-    
-    <div class="fixed inset-0 overflow-hidden pointer-events-none">
-        <div class="blob w-96 h-96 bg-neon-purple/30 top-[-10%] left-[-10%]"></div>
-        <div class="blob w-[500px] h-[500px] bg-neon-blue/20 bottom-[-10%] right-[-10%] animation-delay-2000"></div>
-    </div>
 
-    <nav class="fixed top-0 w-full p-6 md:p-8 flex justify-between items-center z-50 mix-blend-difference text-white">
-        <div class="text-xl font-bold tracking-tighter opacity-0 nav-item cursor-none">IPGL__26</div>
-        <div class="hidden md:flex gap-10 text-xs uppercase tracking-[0.2em] opacity-0 nav-item">
-            <a href="#work" class="hover:text-neon-purple transition-colors">Proyectos</a>
-            <a href="#services" class="hover:text-neon-purple transition-colors">Capacidades</a>
+    <div class="noise-overlay"></div>
+
+    <div class="blob-bg w-96 h-96 bg-neon-purple top-0 left-0"></div>
+    <div class="blob-bg w-[500px] h-[500px] bg-neon-blue bottom-0 right-0" style="animation-delay: -5s;"></div>
+
+    <nav class="fixed top-0 w-full p-6 flex justify-between items-center z-50 mix-blend-difference">
+        <div class="text-xl font-bold font-brand tracking-tighter text-white">IPGL_26</div>
+        <div class="hidden md:flex gap-8 text-xs uppercase tracking-widest text-white">
+            <a href="#projects" class="hover:text-neon-purple transition-colors">Proyectos</a>
             <a href="#contact" class="hover:text-neon-purple transition-colors">Contacto</a>
         </div>
-        <div class="md:hidden opacity-0 nav-item text-xs uppercase">Menu</div>
     </nav>
 
-    <header class="relative w-full h-screen flex flex-col justify-center items-center text-center px-4 z-10">
-        <div class="overflow-hidden mb-2">
-            <p class="hero-sub text-xs md:text-sm text-gray-500 uppercase tracking-[0.4em] translate-y-full">
-                Digital Experience Designer
-            </p>
-        </div>
-        <div class="overflow-hidden">
-            <h1 class="hero-title font-brand text-5xl md:text-8xl lg:text-9xl font-bold leading-none tracking-tighter text-white translate-y-full">
-                ISMAEL PGL
-            </h1>
-        </div>
-        <div class="mt-8 max-w-lg overflow-hidden">
-            <p class="hero-desc text-gray-400 text-base md:text-lg font-light translate-y-full leading-relaxed">
-                Fusionando <span class="text-white font-medium">Estética Minimalista</span> con la potencia de la <span class="text-neon-purple font-medium">Inteligencia Artificial</span> para crear marcas del futuro.
-            </p>
-        </div>
-        <div class="mt-12 opacity-0 hero-btn">
-            <a href="#work" class="px-8 py-3 border border-white/20 rounded-full text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">
-                Explorar Trabajo
+    <header class="relative w-full h-screen flex flex-col justify-center items-center text-center px-4 z-50">
+        <p class="hero-anim text-sm md:text-base text-gray-500 uppercase tracking-[0.3em] mb-4 invisible-start">
+            Creative Developer & AI Specialist
+        </p>
+        <h1 class="hero-anim font-brand text-5xl md:text-8xl lg:text-9xl font-bold leading-none tracking-tighter text-white mb-6 invisible-start">
+            ISMAEL PGL
+        </h1>
+        <p class="hero-anim text-gray-300 text-lg md:text-xl font-light max-w-xl invisible-start">
+            Diseñando experiencias digitales inmersivas con la potencia de la <span class="text-neon-purple">Inteligencia Artificial</span>.
+        </p>
+        <div class="hero-anim mt-12 invisible-start">
+            <a href="#projects" class="px-8 py-3 border border-white/30 rounded-full text-xs uppercase tracking-widest text-white hover:bg-white hover:text-black transition-all">
+                Ver Portfolio
             </a>
-        </div>
-        
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
         </div>
     </header>
 
-    <section id="work" class="relative z-10 py-32 px-4 md:px-12 max-w-7xl mx-auto">
-        <div class="mb-20 flex flex-col md:flex-row justify-between items-end project-header opacity-0 translate-y-10">
-            <h2 class="font-brand text-4xl md:text-6xl text-white">SELECTED <br> WORKS <span class="text-neon-purple text-2xl">©26</span></h2>
-            <p class="text-right text-gray-500 text-sm mt-4 md:mt-0 uppercase tracking-widest">
-                AI Enhanced / WebGL / Interactive
-            </p>
+    <section id="projects" class="relative z-50 py-24 px-4 md:px-12 max-w-7xl mx-auto">
+        <div class="mb-16">
+            <h2 class="font-brand text-4xl md:text-6xl text-white mb-2">Selected Works</h2>
+            <div class="w-full h-[1px] bg-white/20"></div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-4 md:gap-6 h-auto md:h-[800px]">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             
-            <div class="group relative col-span-1 md:col-span-2 row-span-2 bg-white/5 border border-white/10 rounded-3xl overflow-hidden project-card opacity-0 translate-y-10">
-                <div class="absolute inset-0 bg-gray-800">
-                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-105" alt="Architecture">
-                </div>
-                <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-                    <h3 class="text-3xl font-brand mb-1">AURA TOWER</h3>
-                    <p class="text-gray-400 text-sm">Real Estate con <span class="text-white">Predicción de Precios IA</span></p>
+            <div class="group relative aspect-[4/3] bg-gray-900 rounded-2xl overflow-hidden border border-white/10 project-card invisible-start">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-110" alt="Proyecto 1">
+                <div class="absolute bottom-0 left-0 p-8 w-full bg-gradient-to-t from-black to-transparent">
+                    <h3 class="text-3xl font-brand text-white">AURA ESTATES</h3>
+                    <p class="text-gray-400 text-sm">Real Estate + AI Prediction</p>
                 </div>
             </div>
 
-            <div class="group relative col-span-1 md:col-span-1 row-span-1 bg-white/5 border border-white/10 rounded-3xl overflow-hidden project-card opacity-0 translate-y-10">
-                <div class="absolute inset-0 bg-gray-800">
-                    <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover opacity-50 transition-transform duration-700 group-hover:scale-105" alt="Crypto">
-                </div>
-                <div class="absolute top-0 right-0 p-6">
-                    <span class="text-xs border border-white/30 rounded-full px-3 py-1 backdrop-blur-md">Web3</span>
-                </div>
-                <div class="absolute bottom-0 p-6">
-                    <h3 class="text-xl font-brand">NEO-VAULT</h3>
-                    <p class="text-xs text-gray-400">DeFi Dashboard</p>
+            <div class="group relative aspect-[4/3] bg-gray-900 rounded-2xl overflow-hidden border border-white/10 project-card invisible-start">
+                <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=1000&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-110" alt="Proyecto 2">
+                <div class="absolute bottom-0 left-0 p-8 w-full bg-gradient-to-t from-black to-transparent">
+                    <h3 class="text-3xl font-brand text-white">NEO VAULT</h3>
+                    <p class="text-gray-400 text-sm">FinTech Dashboard</p>
                 </div>
             </div>
 
-            <div class="group relative col-span-1 md:col-span-1 row-span-1 bg-gradient-to-br from-neon-purple/20 to-blue-900/20 border border-white/10 rounded-3xl overflow-hidden flex items-center justify-center project-card opacity-0 translate-y-10">
-                <div class="text-center p-6">
-                    <h3 class="text-2xl font-brand mb-2">VELOCITY</h3>
-                    <p class="text-xs text-gray-400 mb-6">Digital Fashion & AR</p>
-                    <span class="inline-block px-4 py-2 bg-white text-black text-xs font-bold rounded-full group-hover:scale-110 transition-transform">Ver Case Study</span>
-                </div>
+        </div>
+    </section>
+
+    <section class="py-20 border-y border-white/10 bg-white/5 relative z-50">
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <span class="text-6xl md:text-8xl font-brand stroke-text mx-4">CREATIVE DEVELOPMENT • AI SOLUTIONS • WEBGL • </span>
+                <span class="text-6xl md:text-8xl font-brand stroke-text mx-4">CREATIVE DEVELOPMENT • AI SOLUTIONS • WEBGL • </span>
             </div>
         </div>
     </section>
 
-    <section id="services" class="py-24 bg-white/5 border-y border-white/5 overflow-hidden">
-        <div class="flex gap-12 whitespace-nowrap animate-marquee">
-            <span class="text-6xl md:text-8xl font-brand text-transparent stroke-text opacity-30">CREATIVE DEVELOPMENT • AI INTEGRATION • 3D WEBGL • UI/UX DESIGN • </span>
-            <span class="text-6xl md:text-8xl font-brand text-transparent stroke-text opacity-30">CREATIVE DEVELOPMENT • AI INTEGRATION • 3D WEBGL • UI/UX DESIGN • </span>
-        </div>
-        
-        <div class="max-w-4xl mx-auto px-6 mt-20 grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div class="service-item opacity-0 translate-y-10">
-                <h4 class="text-neon-purple text-sm uppercase tracking-widest mb-4">01. Estrategia</h4>
-                <h3 class="text-2xl font-bold mb-4">Integración de IA</h3>
-                <p class="text-gray-400 font-light">No solo diseño webs. Implemento chatbots inteligentes, generación de contenido dinámico y automatizaciones que escalan tu negocio.</p>
-            </div>
-            <div class="service-item opacity-0 translate-y-10 delay-100">
-                <h4 class="text-neon-blue text-sm uppercase tracking-widest mb-4">02. Experiencia</h4>
-                <h3 class="text-2xl font-bold mb-4">Diseño Inmersivo</h3>
-                <p class="text-gray-400 font-light">Animaciones fluidas (60fps), interacciones 3D y una navegación que retiene al usuario el doble de tiempo.</p>
-            </div>
-        </div>
-    </section>
-
-    <footer id="contact" class="py-32 px-4 text-center">
-        <p class="text-gray-500 uppercase tracking-widest mb-8">¿Listo para el siguiente nivel?</p>
-        <a href="mailto:hola@ismaelpgl.com" class="relative group inline-block">
-            <h2 class="font-brand text-5xl md:text-7xl lg:text-8xl font-bold text-white group-hover:text-neon-purple transition-colors duration-300">
-                LET'S TALK
+    <footer id="contact" class="py-32 text-center relative z-50 px-4">
+        <p class="text-gray-500 uppercase tracking-widest mb-6">¿Hablamos?</p>
+        <a href="mailto:hola@ismaelpgl.com" class="inline-block">
+            <h2 class="text-5xl md:text-7xl lg:text-8xl font-brand text-white hover:text-neon-purple transition-colors cursor-pointer">
+                LET'S CREATE
             </h2>
-            <div class="w-full h-1 bg-neon-purple scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
         </a>
-        
-        <div class="mt-24 flex justify-between items-end max-w-7xl mx-auto text-xs text-gray-600 uppercase">
-            <div>
-                &copy; 2026 Ismael PGL.
-            </div>
-            <div class="flex gap-6">
-                <a href="#" class="hover:text-white transition-colors">Twitter/X</a>
-                <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
-                <a href="#" class="hover:text-white transition-colors">Instagram</a>
-            </div>
-        </div>
+        <p class="mt-12 text-gray-600 text-xs uppercase">© 2026 Ismael PGL</p>
     </footer>
-
-    <style>
-        .stroke-text {
-            -webkit-text-stroke: 1px rgba(255,255,255,0.5);
-        }
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-            animation: marquee 20s linear infinite;
-        }
-    </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <script>
-        gsap.registerPlugin(ScrollTrigger);
+        document.addEventListener("DOMContentLoaded", (event) => {
+            gsap.registerPlugin(ScrollTrigger);
 
-        // --- CURSOR ---
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorOutline = document.querySelector('.cursor-outline');
-
-        window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-            cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
-        });
-
-        // Hover Effects
-        document.querySelectorAll('a, button, .project-card').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursorOutline.style.width = '60px';
-                cursorOutline.style.height = '60px';
-                cursorOutline.style.borderColor = '#b026ff';
-                cursorDot.style.backgroundColor = '#b026ff';
+            // 1. CURSOR
+            const dot = document.querySelector('.cursor-dot');
+            const outline = document.querySelector('.cursor-outline');
+            
+            window.addEventListener('mousemove', (e) => {
+                const x = e.clientX;
+                const y = e.clientY;
+                // Usamos gsap set para rendimiento óptimo
+                gsap.set(dot, { x: x, y: y }); 
+                gsap.to(outline, { x: x, y: y, duration: 0.2 });
             });
-            el.addEventListener('mouseleave', () => {
-                cursorOutline.style.width = '40px';
-                cursorOutline.style.height = '40px';
-                cursorOutline.style.borderColor = 'rgba(255,255,255,0.3)';
-                cursorDot.style.backgroundColor = 'white';
+
+            // Hover en enlaces
+            document.querySelectorAll('a, .project-card').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    gsap.to(outline, { scale: 1.5, borderColor: '#b026ff' });
+                });
+                el.addEventListener('mouseleave', () => {
+                    gsap.to(outline, { scale: 1, borderColor: 'rgba(255,255,255,0.5)' });
+                });
             });
-        });
 
-        // --- ANIMACIONES HERO ---
-        const tl = gsap.timeline();
-        tl.to('.hero-title', { y: 0, duration: 1.5, ease: "power4.out" })
-          .to('.hero-sub', { y: 0, duration: 1, ease: "power3.out" }, "-=1.2")
-          .to('.hero-desc', { y: 0, duration: 1, ease: "power3.out" }, "-=1")
-          .to('.nav-item', { opacity: 1, y: 0, duration: 1, stagger: 0.2 }, "-=0.5")
-          .to('.hero-btn', { opacity: 1, y: 0, duration: 1 }, "-=0.5");
+            // 2. HERO ANIMATION (Elimina la invisibilidad y anima)
+            const heroTl = gsap.timeline();
+            heroTl.to('.hero-anim', {
+                autoAlpha: 1, // Esto maneja visibility + opacity
+                y: 0,
+                duration: 1,
+                stagger: 0.2,
+                ease: "power3.out"
+            });
 
-        // --- SCROLL TRIGGERS ---
-        
-        // Proyectos
-        gsap.to('.project-header', {
-            scrollTrigger: { trigger: '.project-header', start: 'top 85%' },
-            opacity: 1, y: 0, duration: 1
-        });
-
-        gsap.utils.toArray('.project-card').forEach((card, i) => {
-            gsap.to(card, {
-                scrollTrigger: { trigger: card, start: 'top 90%' },
-                opacity: 1, y: 0, duration: 1, delay: i * 0.1, ease: "power4.out"
+            // 3. SCROLL ANIMATIONS
+            gsap.utils.toArray('.project-card').forEach((card, i) => {
+                gsap.fromTo(card, 
+                    { autoAlpha: 0, y: 50 },
+                    { 
+                        scrollTrigger: { trigger: card, start: "top 85%" },
+                        autoAlpha: 1, 
+                        y: 0, 
+                        duration: 1, 
+                        delay: i * 0.2,
+                        ease: "power3.out"
+                    }
+                );
             });
         });
-
-        // Servicios
-        gsap.utils.toArray('.service-item').forEach((item, i) => {
-            gsap.to(item, {
-                scrollTrigger: { trigger: '#services', start: 'top 75%' },
-                opacity: 1, y: 0, duration: 1, delay: i * 0.2
-            });
-        });
-
     </script>
 </body>
 </html>
