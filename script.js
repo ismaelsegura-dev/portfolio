@@ -1,5 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
     
+    gsap.registerPlugin(ScrollTrigger);
+
+    // --- CÓDIGO DEL CURSOR ---
+    const cursor = document.querySelector('.cursor-dot');
+    
+    // Hacemos que la bolita siga al ratón
+    document.addEventListener('mousemove', (e) => {
+        // Usamos GSAP para que el movimiento sea ultra-suave
+        gsap.to(cursor, {
+            x: e.clientX,
+            y: e.clientY,
+            duration: 0.1, // Cuanto más bajo, más rápido sigue
+            ease: "power2.out"
+        });
+    });
+
+    // ... (aquí sigue el resto de tu código de animaciones y Spline) ...
     // 0. Registrar Plugins
     gsap.registerPlugin(ScrollTrigger);
 
