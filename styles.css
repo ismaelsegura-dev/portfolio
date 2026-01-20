@@ -1,28 +1,28 @@
-/* === VARIABLES & CONFIGURACIÓN BASE === */
+/* === VARIABLES & CONFIGURACIÓN BASE (MODO CLARO) === */
 :root {
-    --bg: #050505;       /* Negro profundo */
-    --text: #ffffff;     /* Blanco puro */
-    --accent: #b026ff;   /* Morado Neón (Tu marca) */
-    --gray: #888888;
+    --bg: #e0e0e0;       /* Gris platino suave */
+    --text: #0a0a0a;     /* Negro casi puro para textos principales */
+    --accent: #4f46e5;   /* Azul índigo elegante */
+    --gray: #4a4a4a;     /* Gris oscuro para textos secundarios */
 }
 
 body {
     background-color: var(--bg);
     color: var(--text);
     margin: 0;
-    font-family: 'Space Grotesk', sans-serif; /* Fuente principal legible */
-    overflow-x: hidden; /* Evita scroll lateral indeseado */
-    min-height: 100vh;  /* Permite que la web crezca hacia abajo */
+    font-family: 'Space Grotesk', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
     cursor: default;
 }
 
-/* === TEXTURA DE RUIDO (FILM GRAIN) === */
+/* === TEXTURA DE RUIDO (SUTIL) === */
 .noise {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    pointer-events: none; /* Deja pasar los clics */
+    pointer-events: none;
     background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-    opacity: 0.05; /* Sutil pero elegante */
+    opacity: 0.03; /* Muy bajita para no ensuciar el blanco */
     z-index: 50;
 }
 
@@ -35,8 +35,8 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 100; /* Siempre por encima de todo */
-    mix-blend-mode: difference; /* Efecto mágico: cambia de color según el fondo */
+    z-index: 100;
+    /* Quitamos mix-blend-mode para asegurar legibilidad en claro */
 }
 
 .logo {
@@ -44,16 +44,17 @@ nav {
     font-weight: 700;
     font-size: 1.5rem;
     letter-spacing: -1px;
+    color: var(--text); /* Aseguramos que sea negro */
 }
 
 .menu a {
     text-decoration: none;
-    color: white;
+    color: var(--text); /* Negro */
     margin-left: 2rem;
     text-transform: uppercase;
     font-size: 0.8rem;
     letter-spacing: 2px;
-    font-weight: 500;
+    font-weight: 600; /* Un poco más gordita para que se lea bien */
     position: relative;
     transition: color 0.3s;
 }
@@ -63,69 +64,71 @@ nav {
 }
 
 .contact-btn {
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid rgba(0,0,0,0.2); /* Borde negro suave */
     padding: 10px 25px;
     border-radius: 50px;
     transition: 0.3s;
+    color: var(--text);
 }
 
 .contact-btn:hover {
-    background: white;
-    color: black !important; /* Fuerza el negro al hacer hover */
+    background: var(--text);
+    color: var(--bg) !important;
 }
 
 /* === ESTRUCTURA PRINCIPAL (HERO) === */
 main {
     display: grid;
-    grid-template-columns: 1.2fr 1fr; /* Dividimos la pantalla: Texto | Hueco para 3D */
-    height: 100vh; /* Ocupa toda la pantalla inicial */
+    grid-template-columns: 1.2fr 1fr;
+    height: 100vh;
     padding: 0 3rem;
     align-items: center;
     position: relative;
 }
 
-/* === CONTENIDO IZQUIERDA (TEXTO) === */
 .hero-content {
-    z-index: 10; /* Por encima del 3D */
+    z-index: 10;
     position: relative;
-    pointer-events: none; /* Deja pasar clicks al 3D si hay hueco */
+    pointer-events: none;
 }
 
-/* Reactivamos clicks en los botones y textos */
 .hero-content h1, .hero-content p, .hero-content .badge {
     pointer-events: auto;
 }
 
+/* ETIQUETA "DISPONIBLE" */
 .badge {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: rgba(255,255,255,0.05);
+    background: rgba(0,0,0,0.05); /* Fondo oscuro muy suave */
     padding: 8px 16px;
     border-radius: 30px;
     font-size: 0.7rem;
     letter-spacing: 2px;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(0,0,0,0.1); /* Borde oscuro */
     margin-bottom: 2rem;
     backdrop-filter: blur(10px);
+    color: var(--text); /* Texto negro */
+    font-weight: 600;
 }
 
 .dot {
     width: 8px;
     height: 8px;
-    background-color: #00ff88; /* Verde "Disponible" */
+    background-color: #10b981; /* Verde esmeralda */
     border-radius: 50%;
-    box-shadow: 0 0 10px #00ff88;
 }
 
+/* TÍTULO PRINCIPAL (CORREGIDO) */
 h1 {
     font-family: 'Syncopate', sans-serif;
-    font-size: 5vw; /* Tamaño responsive */
+    font-size: 5vw;
     line-height: 0.95;
     font-weight: 700;
     margin-bottom: 2rem;
-    /* Gradiente sutil en el texto */
-    background: linear-gradient(to right, #fff, #999);
+    /* Degradado de Negro a Gris Oscuro */
+    background: linear-gradient(to right, #000000, #555555);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -136,19 +139,20 @@ p {
     max-width: 500px;
     margin-bottom: 3rem;
     line-height: 1.6;
+    font-weight: 400;
 }
 
-/* BOTONES */
+/* BOTONES (CORREGIDOS) */
 .cta-container {
     display: flex;
     gap: 20px;
-    pointer-events: auto; /* Asegura que se puedan clicar */
+    pointer-events: auto;
 }
 
 .primary-btn {
     padding: 15px 40px;
-    background: white;
-    color: black;
+    background: var(--text); /* Fondo NEGRO */
+    color: var(--bg);        /* Texto BLANCO */
     border: none;
     border-radius: 4px;
     font-weight: bold;
@@ -160,14 +164,14 @@ p {
 
 .primary-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
 .secondary-btn {
     padding: 15px 40px;
     background: transparent;
-    color: white;
-    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--text); /* Texto NEGRO */
+    border: 1px solid rgba(0,0,0,0.3); /* Borde NEGRO */
     border-radius: 4px;
     cursor: pointer;
     font-family: 'Syncopate', sans-serif;
@@ -176,18 +180,17 @@ p {
 }
 
 .secondary-btn:hover {
-    background: rgba(255,255,255,0.1);
+    background: rgba(0,0,0,0.05);
 }
 
-/* === 3D VIEWER (CORREGIDO) === */
+/* === 3D VIEWER === */
 .hero-3d {
-    width: 100%;      /* ANTES: 140% -> AHORA: 100% (Arregla el ratón) */
+    width: 100%;
     height: 100%;
     position: absolute;
-    right: 0;         /* ANTES: -20% -> AHORA: 0 */
+    right: 0;
     top: 0;
-    z-index: 1;       /* Detrás del texto */
-    /* Importante: Ajusta la cámara en Spline para mover el robot a la derecha */
+    z-index: 1;
 }
 
 /* === BARRA INFERIOR === */
@@ -201,32 +204,33 @@ p {
     justify-content: space-between;
     align-items: flex-end;
     font-size: 0.7rem;
-    color: #666;
+    color: var(--gray);
     letter-spacing: 1px;
     z-index: 10;
 }
 
 .stat span {
     display: block;
-    color: #444;
+    color: var(--text);
     margin-bottom: 5px;
     font-weight: bold;
 }
 
-/* === SECCIÓN PROYECTOS (SCROLL) === */
+/* === SECCIÓN PROYECTOS === */
 .projects-section {
     padding: 10rem 3rem;
     position: relative;
     z-index: 20;
-    background: var(--bg); /* Tapa el 3D al bajar */
+    background: var(--bg);
 }
 
 .section-header h2 {
     font-family: 'Syncopate', sans-serif;
     font-size: 3rem;
     margin-bottom: 4rem;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1); /* Línea divisoria oscura */
     padding-bottom: 2rem;
+    color: var(--text);
 }
 
 .year {
@@ -235,7 +239,6 @@ p {
     vertical-align: super;
 }
 
-/* GRID DE TARJETAS */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -252,7 +255,6 @@ p {
     transform: translateY(-10px);
 }
 
-/* Tarjeta Grande */
 .project-card.large {
     grid-column: span 2;
 }
@@ -264,9 +266,9 @@ p {
     border-radius: 4px;
     margin-bottom: 1.5rem;
     position: relative;
+    background-color: #ccc; /* Placeholder por si tarda en cargar */
 }
 
-/* Tarjetas Pequeñas */
 .project-card:not(.large) .card-image {
     height: 40vh;
 }
@@ -276,35 +278,33 @@ p {
     height: 100%;
     object-fit: cover;
     transition: transform 0.7s ease, opacity 0.3s;
-    opacity: 0.8;
 }
 
-/* Efecto Hover en Imagen */
 .project-card:hover img {
     transform: scale(1.05);
-    opacity: 1;
 }
 
 .card-info h3 {
     font-family: 'Syncopate', sans-serif;
     font-size: 1.5rem;
     margin: 0 0 0.5rem 0;
+    color: var(--text);
 }
 
 .card-info p {
-    color: #888;
+    color: var(--gray);
     margin: 0 0 1rem 0;
     font-size: 0.9rem;
 }
 
 .tags span {
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(0,0,0,0.2); /* Borde oscuro */
     padding: 4px 12px;
     border-radius: 20px;
     font-size: 0.6rem;
     text-transform: uppercase;
     margin-right: 5px;
-    color: #666;
+    color: var(--gray);
     transition: 0.3s;
 }
 
@@ -313,34 +313,21 @@ p {
     color: var(--accent);
 }
 
-/* === RESPONSIVE (MÓVIL) === */
+/* === RESPONSIVE === */
 @media (max-width: 768px) {
     main {
         grid-template-columns: 1fr;
         text-align: center;
         padding: 0 1.5rem;
-        padding-top: 6rem; /* Espacio para el menú */
+        padding-top: 6rem;
     }
-    
     h1 { font-size: 3rem; }
-    
     .cta-container { justify-content: center; }
-    
-    /* En móvil el 3D va arriba o detrás */
-    .hero-3d {
-        position: relative;
-        width: 100%;
-        height: 50vh;
-        order: -1;
-    }
-    
+    .hero-3d { position: relative; width: 100%; height: 50vh; order: -1; }
     nav { padding: 1.5rem; }
-    .menu { display: none; } /* Ocultamos menú simple en móvil por ahora */
-    
+    .menu { display: none; }
     .bottom-bar { display: none; }
-    
     .projects-grid { grid-template-columns: 1fr; }
     .project-card.large { grid-column: span 1; }
-    
     .projects-section { padding: 5rem 1.5rem; }
 }
