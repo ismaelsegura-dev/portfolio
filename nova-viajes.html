@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Viajes | ISMAEL PGL</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <div class="noise"></div>
+
+    <nav>
+        <a href="index.html" class="logo">ISMAEL PGL.</a>
+        <div class="menu">
+            <a href="index.html#work">Volver / Cerrar</a>
+        </div>
+    </nav>
+
+    <header class="project-hero">
+        <div class="hero-text-container">
+            <h1>NOVA<br>VIAJES</h1>
+            <p class="subtitle">AI Travel Planner</p>
+        </div>
+        <div class="hero-image-container">
+            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2000" alt="Nova Viajes Portada">
+        </div>
+    </header>
+
+    <section class="project-info">
+        <div class="info-column">
+            <span class="label">CLIENTE</span>
+            <p>Nova Startups</p>
+        </div>
+        <div class="info-column">
+            <span class="label">ROL</span>
+            <p>Full Stack Dev & UI/UX</p>
+        </div>
+        <div class="info-column">
+            <span class="label">AÑO</span>
+            <p>2025</p>
+        </div>
+        <div class="info-column">
+            <span class="label">TECH STACK</span>
+            <p>React, Python, OpenAI API</p>
+        </div>
+    </section>
+
+    <section class="project-content">
+        <div class="content-block">
+            <h2>EL RETO</h2>
+            <p>
+                Los planificadores de viajes tradicionales son estáticos y aburridos. El usuario necesitaba una herramienta que no solo sugiriera destinos, sino que entendiera emociones y presupuestos en tiempo real, creando itinerarios hiper-personalizados en segundos.
+            </p>
+        </div>
+
+        <div class="content-image">
+            <img src="https://images.unsplash.com/photo-1517488627473-b3c99a093375?q=80&w=1500" alt="App UI">
+        </div>
+
+        <div class="content-block">
+            <h2>LA SOLUCIÓN</h2>
+            <p>
+                Desarrollé un algoritmo híbrido que combina preferencias del usuario con datos climáticos en tiempo real. La interfaz, diseñada bajo principios de "Calm Tech", guía al usuario sin abrumarlo, generando rutas exportables a Google Maps con un solo clic.
+            </p>
+        </div>
+    </section>
+
+    <div class="next-project">
+        <a href="#">
+            <span class="label">SIGUIENTE PROYECTO</span>
+            <h2>MERCADO FRESH →</h2>
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // 1. Cursor Logic (Igual que en home)
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+            window.addEventListener('mousemove', (e) => {
+                gsap.to(cursorDot, { x: e.clientX, y: e.clientY, duration: 0.1 });
+                gsap.to(cursorOutline, { x: e.clientX, y: e.clientY, duration: 0.5 });
+            });
+
+            // 2. Animación de Entrada
+            const tl = gsap.timeline();
+            tl.from("h1", { y: 100, opacity: 0, duration: 1.2, ease: "power4.out" })
+              .from(".subtitle", { opacity: 0, duration: 1 }, "-=0.8")
+              .from(".hero-image-container", { scale: 0.9, opacity: 0, duration: 1.5, ease: "expo.out" }, "-=1")
+              .from(".info-column", { y: 20, opacity: 0, stagger: 0.1 }, "-=0.5");
+        });
+    </script>
+</body>
+</html>
