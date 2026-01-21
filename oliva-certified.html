@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oliva Certified | ISMAEL PGL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <div class="noise"></div>
+
+    <nav>
+        <a href="index.html" class="logo">ISMAEL PGL.</a>
+        <div class="menu">
+            <a href="index.html#work">Volver / Cerrar ✕</a>
+        </div>
+    </nav>
+
+    <header class="project-hero">
+        <div class="hero-text-container">
+            <h1>OLIVA<br>CERTIFIED</h1>
+            <p class="subtitle">Blockchain Supply Chain</p>
+        </div>
+        <div class="hero-image-container">
+            <img src="https://images.unsplash.com/photo-1474978528675-4a50a4508dc3?q=80&w=2000" alt="Oliva Hero">
+        </div>
+    </header>
+
+    <section class="project-info">
+        <div class="info-column"><span class="label">CLIENTE</span><p>Coop. Andaluza</p></div>
+        <div class="info-column"><span class="label">ROL</span><p>Blockchain Dev</p></div>
+        <div class="info-column"><span class="label">AÑO</span><p>2026</p></div>
+        <div class="info-column"><span class="label">STACK</span><p>Solidity, React, IoT</p></div>
+    </section>
+
+    <section class="project-content">
+        <div class="content-block">
+            <h2>EL PROBLEMA</h2>
+            <p>El mercado del aceite de oliva sufre de fraude y falta de transparencia. Los consumidores no tienen forma real de saber si el aceite es realmente "Extra Virgen" o su origen exacto.</p>
+        </div>
+
+        <div class="live-preview-container">
+            <div class="browser-mockup">
+                <div class="browser-header">
+                    <div class="window-controls">
+                        <span class="control red"></span>
+                        <span class="control yellow"></span>
+                        <span class="control green"></span>
+                    </div>
+                    <div class="address-bar">https://app.olivacertified.io/verify/lote-2026</div>
+                </div>
+                <div class="browser-content">
+                    <iframe src="./oliva-app-design.html" title="Diseño Oliva" style="width: 100%; height: 100%; border: none;"></iframe>
+                </div>
+            </div>
+            <p class="caption">👆 App de Verificación de Trazabilidad (Diseño Interactivo)</p>
+        </div>
+
+        <div class="content-block">
+            <h2>LA SOLUCIÓN</h2>
+            <p>Implementamos un sistema de trazabilidad inmutable sobre la red Polygon. Cada botella tiene un gemelo digital (NFT) que registra su acidez, fecha de cosecha y geolocalización, accesible vía QR.</p>
+        </div>
+    </section>
+
+    <div class="next-project">
+        <a href="#">
+            <span class="label">SIGUIENTE PROYECTO</span>
+            <h2>AERO LAB →</h2>
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger);
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+            window.addEventListener('mousemove', (e) => {
+                gsap.to(cursorDot, { x: e.clientX, y: e.clientY, duration: 0.1 });
+                gsap.to(cursorOutline, { x: e.clientX, y: e.clientY, duration: 0.5 });
+            });
+
+            // Animaciones
+            const tl = gsap.timeline();
+            tl.from("h1", { y: 100, opacity: 0, duration: 1.2, ease: "power4.out" })
+              .from(".subtitle", { opacity: 0, duration: 1 }, "-=0.8")
+              .from(".hero-image-container", { scale: 0.95, opacity: 0, duration: 1.5, ease: "expo.out" }, "-=1");
+        });
+    </script>
+</body>
+</html>
