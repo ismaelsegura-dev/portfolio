@@ -2,127 +2,258 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Nova Interface</title>
+    <title>Nova AI Planner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
     <style>
-        /* ESTILOS DE LA APP NOVA VIAJES */
-        :root { --primary: #2563eb; --bg: #f8fafc; --text: #1e293b; }
-        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); }
-        
-        /* Navbar */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: white; border-bottom: 1px solid #e2e8f0; }
-        .logo { font-weight: 800; font-size: 1.2rem; color: var(--primary); letter-spacing: -0.5px; }
-        .user { width: 35px; height: 35px; background: #ddd; border-radius: 50%; }
-
-        /* Hero / Buscador IA */
-        .hero { text-align: center; padding: 80px 20px; }
-        h1 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 800; letter-spacing: -1px; }
-        p { color: #64748b; margin-bottom: 40px; }
-
-        .ai-input-container {
-            max-width: 600px; margin: 0 auto; position: relative;
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #e0e7ff;
+            --bg-app: #f3f4f6;
+            --surface: #ffffff;
+            --text-main: #111827;
+            --text-sec: #6b7280;
+            --border: #e5e7eb;
         }
-        .ai-input {
-            width: 100%; padding: 20px 25px; border-radius: 50px; border: 1px solid #cbd5e1;
-            font-size: 1rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); outline: none; transition: 0.3s;
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-app);
+            color: var(--text-main);
+            height: 100vh;
+            display: flex;
+            overflow: hidden; /* Para que el scroll sea interno */
         }
-        .ai-input:focus { border-color: var(--primary); box-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.2); }
+
+        /* === SIDEBAR === */
+        aside {
+            width: 260px;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+            flex-shrink: 0;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+        .logo-icon {
+            width: 32px; height: 32px;
+            background: linear-gradient(135deg, var(--primary), #9333ea);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center; color: white;
+        }
+        .logo-text { font-weight: 700; font-size: 1.2rem; letter-spacing: -0.5px; }
+
+        .nav-menu { list-style: none; padding: 0; margin: 0; }
+        .nav-item {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px; border-radius: 8px;
+            color: var(--text-sec); cursor: pointer;
+            transition: 0.2s; font-weight: 500; font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+        .nav-item:hover { background: var(--bg-app); color: var(--text-main); }
+        .nav-item.active { background: var(--primary-light); color: var(--primary); }
+        .nav-item i { font-size: 1.2rem; }
+
+        .user-profile {
+            margin-top: auto;
+            display: flex; align-items: center; gap: 12px;
+            padding-top: 20px; border-top: 1px solid var(--border);
+        }
+        .avatar { width: 36px; height: 36px; border-radius: 50%; background-image: url('https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=100'); background-size: cover; }
+        .user-info p { margin: 0; font-size: 0.85rem; font-weight: 600; }
+        .user-info span { font-size: 0.75rem; color: var(--text-sec); }
+
+        /* === MAIN CONTENT === */
+        main {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto; /* Scroll aquí */
+        }
+
+        header {
+            max-width: 900px; margin: 0 auto 40px auto; text-align: center;
+        }
+        h1 { font-size: 2rem; margin-bottom: 8px; letter-spacing: -1px; }
+        .subtitle { color: var(--text-sec); }
+
+        /* AI INPUT */
+        .ai-container {
+            max-width: 700px; margin: 0 auto 50px auto;
+            position: relative;
+        }
+        .input-wrapper {
+            background: white;
+            padding: 8px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+            display: flex; align-items: center;
+            transition: 0.3s;
+        }
+        .input-wrapper:focus-within {
+            border-color: var(--primary);
+            box-shadow: 0 4px 25px rgba(79, 70, 229, 0.15);
+        }
+        .ai-field {
+            flex: 1; border: none; outline: none; padding: 12px 20px; font-size: 1rem; color: var(--text-main); font-family: 'Inter'; width: 100%;
+        }
         .ai-btn {
-            position: absolute; right: 10px; top: 8px; background: var(--primary); color: white;
-            border: none; padding: 12px 25px; border-radius: 30px; font-weight: 600; cursor: pointer;
+            background: black; color: white; border: none;
+            padding: 10px 20px; border-radius: 10px; font-weight: 600;
+            cursor: pointer; display: flex; align-items: center; gap: 8px;
+            transition: transform 0.2s;
         }
+        .ai-btn:hover { transform: scale(1.02); background: #333; }
 
-        /* Resultados Sugeridos */
-        .results { padding: 40px; max-width: 1000px; margin: 0 auto; }
-        .section-title { font-size: 0.9rem; text-transform: uppercase; color: #94a3b8; font-weight: 700; margin-bottom: 20px; }
-        
-        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .card { background: white; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; transition: transform 0.2s; cursor: pointer; }
-        .card:hover { transform: translateY(-5px); }
-        .card-img { height: 180px; width: 100%; background-color: #eee; position: relative; }
-        .card-img img { width: 100%; height: 100%; object-fit: cover; }
-        .badge { position: absolute; top: 10px; left: 10px; background: rgba(255,255,255,0.9); padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: bold; color: var(--primary); }
-        
-        .card-body { padding: 20px; }
-        .card-body h3 { margin: 0 0 5px 0; font-size: 1.1rem; }
-        .card-body p { margin: 0; font-size: 0.9rem; color: #64748b; }
-        .match { display: inline-block; margin-top: 15px; font-size: 0.8rem; color: #059669; background: #d1fae5; padding: 4px 8px; border-radius: 4px; }
-
-        /* Simulación de Chat IA */
+        /* CHAT MESSAGE */
+        .chat-response {
+            max-width: 700px; margin: 0 auto 40px auto;
+            display: flex; gap: 16px;
+        }
+        .bot-icon {
+            width: 32px; height: 32px; background: black; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center; color: white; flex-shrink: 0;
+        }
         .chat-bubble {
-            max-width: 500px; margin: 40px auto; background: white; padding: 20px; border-radius: 20px;
-            border: 1px solid #e2e8f0; display: flex; gap: 15px; align-items: start;
+            background: white; padding: 20px; border-radius: 0 16px 16px 16px;
+            border: 1px solid var(--border); box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
-        .ai-avatar { width: 40px; height: 40px; background: linear-gradient(135deg, #2563eb, #9333ea); border-radius: 50%; flex-shrink: 0; }
-        .chat-content strong { display: block; margin-bottom: 5px; font-size: 0.9rem; }
-        .chat-content p { margin: 0; font-size: 0.9rem; color: #475569; line-height: 1.5; }
+        .chat-bubble p { margin: 0; line-height: 1.6; font-size: 0.95rem; }
+
+        /* GRID CARDS */
+        .results-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px; max-width: 1000px; margin: 0 auto;
+        }
+        .card {
+            background: white; border-radius: 16px; overflow: hidden;
+            border: 1px solid var(--border); transition: 0.3s ease;
+            cursor: pointer; position: relative;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+        .card-img { height: 180px; position: relative; }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; }
+        .match-tag {
+            position: absolute; top: 12px; right: 12px;
+            background: rgba(255,255,255,0.95); padding: 4px 10px;
+            border-radius: 20px; font-size: 0.75rem; font-weight: 700;
+            color: #059669; display: flex; align-items: center; gap: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .card-content { padding: 20px; }
+        .card-location { font-size: 0.8rem; color: var(--text-sec); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin-bottom: 4px; }
+        .card h3 { margin: 0 0 8px 0; font-size: 1.1rem; }
+        .tags { display: flex; gap: 8px; margin-top: 16px; }
+        .tag { background: var(--bg-app); padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; color: var(--text-sec); }
 
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">NOVA.</div>
-        <div class="user"></div>
-    </nav>
-
-    <div class="hero">
-        <h1>Diseña tu viaje perfecto.<br>En segundos.</h1>
-        <p>Cuéntale a nuestra IA qué te apetece y olvídate de planificar.</p>
-        
-        <div class="ai-input-container">
-            <input type="text" class="ai-input" value="Viaje de 5 días a Japón, presupuesto medio y mucha comida..." readonly>
-            <button class="ai-btn">Generar ✨</button>
+    <aside>
+        <div class="logo-area">
+            <div class="logo-icon"><i class="ph ph-sparkle"></i></div>
+            <div class="logo-text">Nova AI</div>
         </div>
-    </div>
 
-    <div class="chat-bubble">
-        <div class="ai-avatar"></div>
-        <div class="chat-content">
-            <strong>Nova AI Assistant</strong>
-            <p>¡Entendido! Basándome en tu amor por la gastronomía, he creado una ruta por Osaka y Kioto evitando las trampas para turistas. Aquí tienes 3 opciones que encajan con tu presupuesto.</p>
+        <ul class="nav-menu">
+            <li class="nav-item active"><i class="ph ph-compass"></i> Explorar</li>
+            <li class="nav-item"><i class="ph ph-heart"></i> Guardados</li>
+            <li class="nav-item"><i class="ph ph-calendar-check"></i> Itinerarios</li>
+            <li class="nav-item"><i class="ph ph-users"></i> Comunidad</li>
+        </ul>
+
+        <div class="user-profile">
+            <div class="avatar"></div>
+            <div class="user-info">
+                <p>Ismael PGL</p>
+                <span>Pro Member</span>
+            </div>
         </div>
-    </div>
+    </aside>
 
-    <div class="results">
-        <div class="section-title">Recomendado para ti</div>
-        <div class="grid">
+    <main>
+        <header>
+            <h1>¿Dónde nos vamos hoy?</h1>
+            <p class="subtitle">Diseña tu próxima aventura con Inteligencia Artificial.</p>
+        </header>
+
+        <div class="ai-container">
+            <div class="input-wrapper">
+                <input type="text" class="ai-field" value="Viaje de 5 días a Japón, cultura y comida callejera..." readonly>
+                <button class="ai-btn"><i class="ph ph-magic-wand"></i> Generar</button>
+            </div>
+        </div>
+
+        <div class="chat-response">
+            <div class="bot-icon"><i class="ph ph-robot"></i></div>
+            <div class="chat-bubble">
+                <p>¡Excelente elección! Japón es increíble. Basándome en tu interés por la <strong>cultura</strong> y la <strong>comida callejera</strong>, he evitado las zonas más turísticas de Tokio para centrarme en Osaka (la cocina de Japón) y Kioto. Aquí tienes 3 propuestas generadas:</p>
+            </div>
+        </div>
+
+        <div class="results-grid">
+            
             <div class="card">
                 <div class="card-img">
-                    <span class="badge">Opción 1</span>
                     <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=800" alt="Kyoto">
+                    <div class="match-tag"><i class="ph ph-check-circle"></i> 98% Match</div>
                 </div>
-                <div class="card-body">
-                    <h3>Ruta Gastronómica Kioto</h3>
-                    <p>5 Días • Vuelos incluidos</p>
-                    <div class="match">98% Coincidencia</div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-img">
-                    <span class="badge">Opción 2</span>
-                    <img src="https://images.unsplash.com/photo-1528360983277-13d9b152c6d4?q=80&w=800" alt="Tokyo">
-                </div>
-                <div class="card-body">
-                    <h3>Luces de Neón & Sushi</h3>
-                    <p>5 Días • Hotel 4 Estrellas</p>
-                    <div class="match">92% Coincidencia</div>
+                <div class="card-content">
+                    <div class="card-location">KIOTO & OSAKA</div>
+                    <h3>Ruta Gastronómica Ancestral</h3>
+                    <div class="tags">
+                        <span class="tag">5 Días</span>
+                        <span class="tag">Histórico</span>
+                    </div>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-img">
-                    <span class="badge">Económico</span>
-                    <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?q=80&w=800" alt="Osaka">
+                    <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=800" alt="Tokyo">
+                    <div class="match-tag"><i class="ph ph-check-circle"></i> 94% Match</div>
                 </div>
-                <div class="card-body">
-                    <h3>Osaka Street Food</h3>
-                    <p>5 Días • Hostales Premium</p>
-                    <div class="match">85% Coincidencia</div>
+                <div class="card-content">
+                    <div class="card-location">TOKIO SHINJUKU</div>
+                    <h3>Luces de Neón e Izakayas</h3>
+                    <div class="tags">
+                        <span class="tag">Urbano</span>
+                        <span class="tag">Vida Nocturna</span>
+                    </div>
                 </div>
             </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1528360983277-13d9b152c6d4?q=80&w=800" alt="Japan Nature">
+                    <div class="match-tag"><i class="ph ph-check-circle"></i> 88% Match</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-location">MONTE FUJI</div>
+                    <h3>Retiro Espiritual & Onsen</h3>
+                    <div class="tags">
+                        <span class="tag">Relax</span>
+                        <span class="tag">Naturaleza</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </div>
+    </main>
 
 </body>
 </html>
