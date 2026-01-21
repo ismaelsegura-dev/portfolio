@@ -1,9 +1,11 @@
-/* === VARIABLES === */
+/* ========================================= */
+/* === 1. VARIABLES Y CONFIGURACIÓN BASE === */
+/* ========================================= */
 :root {
-    --bg: #e0e0e0;
-    --text: #0a0a0a;
-    --accent: #4f46e5;
-    --gray: #4a4a4a;
+    --bg: #e0e0e0;       /* Gris claro (Fondo) */
+    --text: #0a0a0a;     /* Negro (Texto principal) */
+    --accent: #4f46e5;   /* Azul índigo (Acentos) */
+    --gray: #4a4a4a;     /* Gris oscuro (Secundarios) */
 }
 
 body {
@@ -13,10 +15,10 @@ body {
     font-family: 'Space Grotesk', sans-serif;
     overflow-x: hidden;
     min-height: 100vh;
-    cursor: none; /* Cursor oculto */
+    cursor: none; /* Cursor oculto (usamos el personalizado) */
 }
 
-/* === RUIDO DE FONDO === */
+/* Textura de Ruido */
 .noise {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -26,19 +28,26 @@ body {
     z-index: 50;
 }
 
-/* === NAVEGACIÓN === */
+/* ========================================= */
+/* === 2. NAVEGACIÓN Y MENÚ === */
+/* ========================================= */
 nav {
     position: fixed; top: 0; width: 100%; padding: 2rem 3rem;
     display: flex; justify-content: space-between; align-items: center;
     z-index: 100;
 }
-.logo { font-family: 'Syncopate', sans-serif; font-weight: 700; font-size: 1.5rem; letter-spacing: -1px; color: var(--text); }
+
+.logo { font-family: 'Syncopate', sans-serif; font-weight: 700; font-size: 1.5rem; letter-spacing: -1px; color: var(--text); text-decoration: none; }
+
 .menu a { text-decoration: none; color: var(--text); margin-left: 2rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; font-weight: 600; transition: color 0.3s; }
 .menu a:hover { color: var(--accent); }
+
 .contact-btn { border: 1px solid rgba(0,0,0,0.2); padding: 10px 25px; border-radius: 50px; transition: 0.3s; color: var(--text); }
 .contact-btn:hover { background: var(--text); color: var(--bg) !important; }
 
-/* === HERO (PORTADA) === */
+/* ========================================= */
+/* === 3. HERO (PORTADA PRINCIPAL) === */
+/* ========================================= */
 main {
     display: grid; grid-template-columns: 1.2fr 1fr;
     height: 100vh; padding: 0 3rem; align-items: center; position: relative;
@@ -60,13 +69,9 @@ h1 {
 }
 p { color: var(--gray); font-size: 1.1rem; max-width: 500px; margin-bottom: 3rem; line-height: 1.6; }
 
-/* === BOTONES ALINEADOS === */
+/* Botones */
 .cta-container { 
-    display: flex; 
-    gap: 20px; 
-    align-items: center; 
-    pointer-events: auto; 
-    margin-top: 20px;
+    display: flex; gap: 20px; align-items: center; pointer-events: auto; margin-top: 20px;
 }
 .primary-btn, .secondary-btn {
     height: 50px; padding: 0 40px; border-radius: 4px; font-weight: bold; cursor: pointer;
@@ -78,10 +83,10 @@ p { color: var(--gray); font-size: 1.1rem; max-width: 500px; margin-bottom: 3rem
 .secondary-btn { background-color: transparent; color: #0a0a0a; border: 1px solid rgba(0,0,0,0.3); }
 .secondary-btn:hover { background-color: rgba(0,0,0,0.05); }
 
-/* === 3D VIEWER === */
+/* 3D Viewer Container */
 .hero-3d { width: 100%; height: 100%; position: absolute; right: 0; top: 0; z-index: 1; }
 
-/* === BARRA INFERIOR === */
+/* Barra Inferior */
 .bottom-bar {
     position: absolute; bottom: 0; left: 0; width: 100%; padding: 2rem 3rem;
     display: flex; justify-content: space-between; align-items: flex-end;
@@ -89,65 +94,40 @@ p { color: var(--gray); font-size: 1.1rem; max-width: 500px; margin-bottom: 3rem
 }
 .stat span { display: block; color: var(--text); margin-bottom: 5px; font-weight: bold; }
 
-/* === PROYECTOS (ESTILO BENTO SUAVE) === */
+/* ========================================= */
+/* === 4. SECCIÓN PROYECTOS (BENTO GRID) === */
+/* ========================================= */
 .projects-section {
-    padding: 10rem 3rem;
-    position: relative;
-    z-index: 20;
-    background: var(--bg);
+    padding: 10rem 3rem; position: relative; z-index: 20; background: var(--bg);
 }
 
 .section-header h2 {
-    font-family: 'Syncopate', sans-serif;
-    font-size: 3rem;
-    margin-bottom: 3rem;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    padding-bottom: 2rem;
-    color: var(--text);
+    font-family: 'Syncopate', sans-serif; font-size: 3rem; margin-bottom: 3rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 2rem; color: var(--text);
 }
-
 .year { font-size: 1rem; color: var(--accent); vertical-align: super; }
 
-/* LAYOUT FLEXBOX PARA BENTO */
-.bento-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-}
+/* Bento Layout */
+.bento-container { display: flex; flex-direction: column; gap: 20px; width: 100%; }
+.bento-row { display: flex; gap: 20px; width: 100%; height: 400px; }
 
-.bento-row {
-    display: flex;
-    gap: 20px;
-    width: 100%;
-    height: 400px; /* Altura fija para la fila */
-}
-
-/* TARJETAS ELÁSTICAS (LENTAS Y ELEGANTES) */
+/* Tarjetas */
 .project-card {
-    position: relative;
-    flex: 1; 
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: pointer;
-    /* CAMBIO: 1.2s para suavidad extrema */
-    transition: flex 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative; flex: 1; border-radius: 12px; overflow: hidden; cursor: pointer;
+    transition: flex 1.2s cubic-bezier(0.22, 1, 0.36, 1); /* Movimiento lento y suave */
+    display: block; /* Para que funcione como enlace <a> */
 }
+.project-card:hover { flex: 3; }
 
-/* AL HACER HOVER, CRECE */
-.project-card:hover {
-    flex: 3;
-}
-
+/* Imágenes dentro de tarjetas */
 .project-card img {
-    width: 100%; height: 100%; object-fit: cover;
-    position: absolute; top: 0; left: 0;
-    /* CAMBIO: Sincronizado a 1.2s */
+    width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;
     transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), filter 1.2s ease;
     filter: grayscale(100%);
 }
 .project-card:hover img { transform: scale(1.1); filter: grayscale(0%); }
 
+/* Overlay y Contenido */
 .overlay {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
@@ -156,40 +136,115 @@ p { color: var(--gray); font-size: 1.1rem; max-width: 500px; margin-bottom: 3rem
 .project-card:hover .overlay { opacity: 0.3; }
 
 .card-content {
-    position: absolute; bottom: 30px; left: 30px; z-index: 10;
-    color: white; min-width: 250px;
+    position: absolute; bottom: 30px; left: 30px; z-index: 10; color: white; min-width: 250px;
 }
 .card-content h3 {
     font-family: 'Syncopate', sans-serif; font-size: 1.5rem; margin: 0; font-weight: 700;
-    transform: translateY(10px); 
-    /* CAMBIO: Texto más lento */
-    transition: transform 0.8s ease;
+    transform: translateY(10px); transition: transform 0.8s ease;
 }
 .card-content p {
     font-size: 0.9rem; opacity: 0; transform: translateY(10px);
-    /* CAMBIO: Texto más lento */
-    transition: all 0.8s ease; 
-    margin-top: 5px; color: rgba(255,255,255,0.8);
+    transition: all 0.8s ease; margin-top: 5px; color: rgba(255,255,255,0.8);
 }
 .project-card:hover .card-content h3 { transform: translateY(0); }
 .project-card:hover .card-content p { opacity: 1; transform: translateY(0); }
 
-/* === RESPONSIVE === */
-@media (max-width: 768px) {
-    main { grid-template-columns: 1fr; padding-top: 6rem; text-align: center; }
-    h1 { font-size: 3rem; }
-    .cta-container { justify-content: center; }
-    .hero-3d { position: relative; width: 100%; height: 50vh; order: -1; }
-    .bottom-bar { display: none; }
-    
-    /* EN MOVIL SE PONEN UNO DEBAJO DE OTRO */
-    .bento-row { flex-direction: column; height: auto; }
-    .project-card { width: 100%; height: 250px; flex: none; }
-    .project-card:hover { flex: none; }
-    .card-content p { opacity: 1; }
+
+/* ========================================= */
+/* === 5. DETALLE DE PROYECTO (PÁGINA INTERNA) === */
+/* ========================================= */
+
+/* Header del Proyecto */
+.project-hero {
+    padding: 8rem 3rem 4rem 3rem; min-height: 90vh;
+    display: flex; flex-direction: column; justify-content: center;
+}
+.hero-text-container h1 {
+    font-size: 8vw; margin: 0; line-height: 0.85; color: var(--text); text-transform: uppercase;
+}
+.subtitle {
+    font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; color: var(--accent);
+    margin-top: 1rem; letter-spacing: 1px;
 }
 
-/* === CURSOR === */
+.hero-image-container {
+    margin-top: 4rem; width: 100%; height: 60vh; overflow: hidden; border-radius: 12px;
+}
+.hero-image-container img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Ficha Técnica Grid */
+.project-info {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    padding: 4rem 3rem;
+    border-top: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.info-column .label {
+    font-size: 0.7rem; color: var(--gray); letter-spacing: 1px; font-weight: 700;
+    display: block; margin-bottom: 10px;
+}
+.info-column p { font-size: 1.1rem; color: var(--text); font-weight: 500; margin: 0; }
+
+/* Bloques de Texto */
+.project-content { padding: 6rem 3rem; max-width: 1200px; margin: 0 auto; }
+.content-block { margin-bottom: 6rem; max-width: 800px; }
+.content-block h2 {
+    font-family: 'Syncopate', sans-serif; font-size: 2rem; margin-bottom: 1.5rem; color: var(--text);
+}
+.content-block p { font-size: 1.2rem; line-height: 1.6; color: var(--gray); }
+
+/* --- LIVE PREVIEW (BROWSER MOCKUP) --- */
+.live-preview-container {
+    margin: 4rem 0; width: 100%; display: flex; flex-direction: column; align-items: center;
+}
+.browser-mockup {
+    width: 100%; height: 75vh; /* Altura de la ventana */
+    background-color: white; border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.1);
+    display: flex; flex-direction: column; overflow: hidden;
+    transition: transform 0.3s ease;
+}
+.browser-mockup:hover { transform: translateY(-5px); box-shadow: 0 30px 60px rgba(0,0,0,0.2); }
+
+.browser-header {
+    background-color: #f1f1f1; padding: 12px 20px; display: flex; align-items: center;
+    border-bottom: 1px solid #ddd; gap: 20px; flex-shrink: 0;
+}
+.window-controls { display: flex; gap: 8px; }
+.control { width: 12px; height: 12px; border-radius: 50%; }
+.control.red { background-color: #ff5f56; }
+.control.yellow { background-color: #ffbd2e; }
+.control.green { background-color: #27c93f; }
+
+.address-bar {
+    background-color: white; flex: 1; padding: 4px 15px; border-radius: 4px;
+    font-size: 0.8rem; color: #888; text-align: center; border: 1px solid #ddd; font-family: monospace;
+}
+
+.browser-content {
+    width: 100%; height: 100%; background-color: white; overflow: hidden; /* Iframe maneja su scroll */
+}
+.browser-content iframe { width: 100%; height: 100%; border: none; }
+
+.caption {
+    margin-top: 15px; font-size: 0.8rem; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 1px; font-weight: bold;
+}
+
+/* Footer Siguiente Proyecto */
+.next-project {
+    padding: 6rem 3rem; background-color: #0a0a0a; text-align: center; transition: background 0.3s;
+}
+.next-project a { text-decoration: none; }
+.next-project .label { color: #666; font-size: 0.8rem; letter-spacing: 2px; }
+.next-project h2 {
+    font-family: 'Syncopate', sans-serif; color: white; font-size: 4vw; margin-top: 1rem; transition: transform 0.3s;
+}
+.next-project:hover h2 { transform: scale(1.05); color: var(--accent); }
+
+
+/* ========================================= */
+/* === 6. CURSOR PERSONALIZADO === */
+/* ========================================= */
 .cursor-dot {
     width: 6px; height: 6px; background-color: var(--text);
     position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
@@ -201,145 +256,33 @@ p { color: var(--gray); font-size: 1.1rem; max-width: 500px; margin-bottom: 3rem
     border-radius: 50%; z-index: 9998; pointer-events: none;
     transition: width 0.2s, height 0.2s, background-color 0.2s;
 }
+/* Efectos de Hover del cursor */
 body:has(a:hover) .cursor-outline,
 body:has(button:hover) .cursor-outline,
 body:has(.project-card:hover) .cursor-outline { 
     width: 50px; height: 50px; background-color: rgba(0,0,0,0.05); border-color: transparent;
 }
+
 /* ========================================= */
-/* === ESTILOS PÁGINA DE PROYECTO (DETALLE) === */
+/* === 7. RESPONSIVE (MÓVIL) === */
 /* ========================================= */
-
-.project-hero {
-    padding: 8rem 3rem 4rem 3rem;
-    min-height: 90vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.hero-text-container h1 {
-    font-size: 8vw; /* Gigante */
-    margin: 0;
-    line-height: 0.85;
-    color: var(--text);
-    text-transform: uppercase;
-}
-
-.subtitle {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.5rem;
-    color: var(--accent);
-    margin-top: 1rem;
-    letter-spacing: 1px;
-}
-
-.hero-image-container {
-    margin-top: 4rem;
-    width: 100%;
-    height: 60vh;
-    overflow: hidden;
-    border-radius: 12px;
-}
-
-.hero-image-container img, .content-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Ficha Técnica */
-.project-info {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    padding: 4rem 3rem;
-    border-top: 1px solid rgba(0,0,0,0.1);
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-}
-
-.info-column .label {
-    font-size: 0.7rem;
-    color: var(--gray);
-    letter-spacing: 1px;
-    font-weight: 700;
-    display: block;
-    margin-bottom: 10px;
-}
-
-.info-column p {
-    font-size: 1.1rem;
-    color: var(--text);
-    font-weight: 500;
-    margin: 0;
-}
-
-/* Contenido */
-.project-content {
-    padding: 6rem 3rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.content-block {
-    margin-bottom: 6rem;
-    max-width: 800px;
-}
-
-.content-block h2 {
-    font-family: 'Syncopate', sans-serif;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    color: var(--text);
-}
-
-.content-block p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: var(--gray);
-}
-
-.content-image {
-    width: 100%;
-    height: 70vh;
-    margin: 4rem 0;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-/* Next Project Footer */
-.next-project {
-    padding: 6rem 3rem;
-    background-color: #0a0a0a; /* Fondo oscuro para el cierre */
-    text-align: center;
-    transition: background 0.3s;
-}
-
-.next-project a {
-    text-decoration: none;
-}
-
-.next-project .label {
-    color: #666;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-}
-
-.next-project h2 {
-    font-family: 'Syncopate', sans-serif;
-    color: white;
-    font-size: 4vw;
-    margin-top: 1rem;
-    transition: transform 0.3s;
-}
-
-.next-project:hover h2 {
-    transform: scale(1.05);
-    color: var(--accent);
-}
-
-/* Responsive Proyecto */
 @media (max-width: 768px) {
+    /* Home */
+    main { grid-template-columns: 1fr; padding-top: 6rem; text-align: center; }
+    h1 { font-size: 3rem; }
+    .cta-container { justify-content: center; }
+    .hero-3d { position: relative; width: 100%; height: 50vh; order: -1; }
+    .bottom-bar { display: none; }
+    
+    /* Bento Grid */
+    .bento-row { flex-direction: column; height: auto; }
+    .project-card { width: 100%; height: 250px; flex: none; }
+    .project-card:hover { flex: none; }
+    .card-content p { opacity: 1; }
+
+    /* Página Detalle */
     .hero-text-container h1 { font-size: 15vw; }
     .project-info { grid-template-columns: 1fr 1fr; gap: 2rem; }
     .project-hero { padding: 6rem 1.5rem; }
+    .browser-mockup { height: 50vh; }
 }
