@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>OlivaChain Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        :root {
+            --primary: #059669; /* Verde Esmeralda */
+            --primary-dark: #047857;
+            --accent: #d97706;  /* Oro Aceite */
+            --bg: #f0fdf4;      /* Fondo muy suave verde */
+            --surface: #ffffff;
+            --text-main: #064e3b;
+            --text-sec: #64748b;
+            --border: #d1fae5;
+        }
+
+        body {
+            margin: 0; font-family: 'Inter', sans-serif;
+            background-color: var(--bg); color: var(--text-main);
+            height: 100vh; display: flex; overflow: hidden;
+        }
+
+        /* SIDEBAR */
+        aside {
+            width: 80px; /* Sidebar colapsada estilo "App moderna" */
+            background: var(--surface); border-right: 1px solid var(--border);
+            display: flex; flex-direction: column; align-items: center; padding: 24px 0;
+            z-index: 10;
+        }
+        .logo { 
+            width: 40px; height: 40px; background: var(--primary); 
+            border-radius: 12px; display: flex; align-items: center; justify-content: center; 
+            color: white; font-size: 1.5rem; margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
+        }
+        .nav-item {
+            width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;
+            border-radius: 12px; color: var(--text-sec); cursor: pointer; transition: 0.3s;
+            margin-bottom: 12px; font-size: 1.4rem;
+        }
+        .nav-item:hover { background: #ecfdf5; color: var(--primary); }
+        .nav-item.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2); }
+
+        /* MAIN */
+        main { flex: 1; padding: 40px; overflow-y: auto; position: relative; }
+
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        h1 { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; margin: 0; }
+        .batch-id { 
+            font-family: monospace; background: white; padding: 8px 16px; 
+            border-radius: 20px; border: 1px solid var(--border); color: var(--text-sec);
+            display: flex; gap: 8px; align-items: center;
+        }
+        .dot-live { width: 8px; height: 8px; background: #10b981; border-radius: 50%; box-shadow: 0 0 0 2px #d1fae5; }
+
+        /* GRID LAYOUT */
+        .dashboard-grid {
+            display: grid; grid-template-columns: 2fr 1fr; gap: 24px;
+        }
+
+        /* CARDS */
+        .card {
+            background: var(--surface); border-radius: 24px; padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02); border: 1px solid var(--border);
+        }
+
+        /* PRODUCT CARD (Izquierda) */
+        .product-header { display: flex; gap: 24px; align-items: center; margin-bottom: 30px; }
+        .product-img { 
+            width: 100px; height: 100px; border-radius: 20px; object-fit: cover; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .product-info h2 { margin: 0 0 5px 0; font-family: 'Space Grotesk'; }
+        .verified-badge { 
+            display: inline-flex; align-items: center; gap: 6px; 
+            background: #ecfdf5; color: var(--primary); padding: 6px 12px; 
+            border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-top: 8px;
+        }
+
+        /* TIMELINE (Blockchain Journey) */
+        .timeline { position: relative; padding-left: 20px; border-left: 2px dashed #cbd5e1; margin-top: 20px; }
+        .event { position: relative; margin-bottom: 30px; padding-left: 20px; }
+        .event::before {
+            content: ''; position: absolute; left: -27px; top: 0; 
+            width: 16px; height: 16px; background: white; border: 4px solid var(--primary); border-radius: 50%;
+        }
+        .event h4 { margin: 0 0 5px 0; font-size: 1rem; }
+        .event p { margin: 0; font-size: 0.85rem; color: var(--text-sec); }
+        .hash { 
+            font-family: monospace; font-size: 0.75rem; color: var(--accent); 
+            background: #fffbeb; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-top: 5px;
+        }
+
+        /* ANALYTICS (Derecha) */
+        .stats-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        .stat-box { background: #f8fafc; padding: 20px; border-radius: 16px; text-align: center; }
+        .stat-val { font-size: 1.8rem; font-weight: 700; color: var(--text-main); font-family: 'Space Grotesk'; }
+        .stat-label { font-size: 0.8rem; color: var(--text-sec); text-transform: uppercase; letter-spacing: 1px; }
+        .quality-high { color: var(--primary); }
+
+        /* MAPA (Simulado) */
+        .map-card { 
+            height: 200px; background-image: url('https://images.unsplash.com/photo-1506368383200-c97b2046468c?q=80&w=800'); 
+            background-size: cover; border-radius: 20px; position: relative; overflow: hidden;
+            display: flex; align-items: center; justify-content: center; margin-top: 24px;
+        }
+        .map-pin {
+            width: 40px; height: 40px; background: var(--primary); color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; box-shadow: 0 0 0 5px rgba(16, 185, 129, 0.3); animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); } 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); } }
+
+    </style>
+</head>
+<body>
+
+    <aside>
+        <div class="logo"><i class="ph-fill ph-plant"></i></div>
+        <div class="nav-item active"><i class="ph ph-qr-code"></i></div>
+        <div class="nav-item"><i class="ph ph-cube"></i></div>
+        <div class="nav-item"><i class="ph ph-chart-line-up"></i></div>
+        <div class="nav-item" style="margin-top:auto;"><i class="ph ph-gear"></i></div>
+    </aside>
+
+    <main>
+        <header>
+            <div>
+                <h1>Trazabilidad Certificada</h1>
+                <p style="margin:0; color:var(--text-sec);">Verificación en tiempo real vía Polygon Network</p>
+            </div>
+            <div class="batch-id">
+                <div class="dot-live"></div> LOTE #2026-OLV-XJ
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            
+            <div class="card">
+                <div class="product-header">
+                    <img src="https://images.unsplash.com/photo-1474978528675-4a50a4508dc3?q=80&w=200" class="product-img" alt="Aceite">
+                    <div class="product-info">
+                        <h2>Aceite Premium Picual</h2>
+                        <div class="verified-badge"><i class="ph-fill ph-seal-check"></i> 100% Auténtico</div>
+                        <p style="margin:8px 0 0 0; font-size:0.9rem; color:#64748b;">Cosecha Temprana • Jaén, España</p>
+                    </div>
+                </div>
+
+                <h3 style="margin-bottom:20px;">Blockchain Journey</h3>
+                <div class="timeline">
+                    <div class="event">
+                        <h4>Embotellado & Sellado</h4>
+                        <p>Planta de Envasado nº4 - Sevilla</p>
+                        <span class="hash">Tx: 0x8a...2b91</span>
+                        <div style="font-size:0.8rem; color:#94a3b8; margin-top:4px;">Hace 2 días</div>
+                    </div>
+                    <div class="event">
+                        <h4>Análisis de Laboratorio</h4>
+                        <p>Certificación de Acidez y Polifenoles</p>
+                        <span class="hash">Tx: 0x3c...f4a0</span>
+                        <div style="font-size:0.8rem; color:#94a3b8; margin-top:4px;">Hace 5 días</div>
+                    </div>
+                    <div class="event">
+                        <h4>Cosecha en Origen</h4>
+                        <p>Finca "Los Olivares", Parcela 22</p>
+                        <span class="hash">Tx: 0x1d...e882</span>
+                        <div style="font-size:0.8rem; color:#94a3b8; margin-top:4px;">12 Oct 2026</div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-label">Acidez</div>
+                        <div class="stat-val quality-high">0.18%</div>
+                        <div style="font-size:0.75rem; color:#10b981;">Extra Virgen</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Polifenoles</div>
+                        <div class="stat-val">850</div>
+                        <div style="font-size:0.75rem; color:#64748b;">mg/kg</div>
+                    </div>
+                </div>
+
+                <div class="map-card">
+                    <div class="map-pin"><i class="ph-fill ph-map-pin"></i></div>
+                </div>
+
+                <div class="card" style="margin-top:24px; background:#1e293b; color:white; border:none;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-size:0.9rem; font-weight:600;">NFT de Propiedad</span>
+                        <i class="ph ph-arrow-right"></i>
+                    </div>
+                    <div style="margin-top:10px; font-family:monospace; font-size:0.8rem; color:#94a3b8;">
+                        Contrato: 0x71C...89<br>
+                        Token ID: #4492
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</body>
+</html>
