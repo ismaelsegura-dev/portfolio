@@ -206,3 +206,140 @@ body:has(button:hover) .cursor-outline,
 body:has(.project-card:hover) .cursor-outline { 
     width: 50px; height: 50px; background-color: rgba(0,0,0,0.05); border-color: transparent;
 }
+/* ========================================= */
+/* === ESTILOS PÁGINA DE PROYECTO (DETALLE) === */
+/* ========================================= */
+
+.project-hero {
+    padding: 8rem 3rem 4rem 3rem;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-text-container h1 {
+    font-size: 8vw; /* Gigante */
+    margin: 0;
+    line-height: 0.85;
+    color: var(--text);
+    text-transform: uppercase;
+}
+
+.subtitle {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-top: 1rem;
+    letter-spacing: 1px;
+}
+
+.hero-image-container {
+    margin-top: 4rem;
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.hero-image-container img, .content-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Ficha Técnica */
+.project-info {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 4rem 3rem;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.info-column .label {
+    font-size: 0.7rem;
+    color: var(--gray);
+    letter-spacing: 1px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.info-column p {
+    font-size: 1.1rem;
+    color: var(--text);
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Contenido */
+.project-content {
+    padding: 6rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.content-block {
+    margin-bottom: 6rem;
+    max-width: 800px;
+}
+
+.content-block h2 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+}
+
+.content-block p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--gray);
+}
+
+.content-image {
+    width: 100%;
+    height: 70vh;
+    margin: 4rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Next Project Footer */
+.next-project {
+    padding: 6rem 3rem;
+    background-color: #0a0a0a; /* Fondo oscuro para el cierre */
+    text-align: center;
+    transition: background 0.3s;
+}
+
+.next-project a {
+    text-decoration: none;
+}
+
+.next-project .label {
+    color: #666;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+}
+
+.next-project h2 {
+    font-family: 'Syncopate', sans-serif;
+    color: white;
+    font-size: 4vw;
+    margin-top: 1rem;
+    transition: transform 0.3s;
+}
+
+.next-project:hover h2 {
+    transform: scale(1.05);
+    color: var(--accent);
+}
+
+/* Responsive Proyecto */
+@media (max-width: 768px) {
+    .hero-text-container h1 { font-size: 15vw; }
+    .project-info { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .project-hero { padding: 6rem 1.5rem; }
+}
