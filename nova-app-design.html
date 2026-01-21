@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nova Interface</title>
+    <style>
+        /* ESTILOS DE LA APP NOVA VIAJES */
+        :root { --primary: #2563eb; --bg: #f8fafc; --text: #1e293b; }
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); }
+        
+        /* Navbar */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: white; border-bottom: 1px solid #e2e8f0; }
+        .logo { font-weight: 800; font-size: 1.2rem; color: var(--primary); letter-spacing: -0.5px; }
+        .user { width: 35px; height: 35px; background: #ddd; border-radius: 50%; }
+
+        /* Hero / Buscador IA */
+        .hero { text-align: center; padding: 80px 20px; }
+        h1 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 800; letter-spacing: -1px; }
+        p { color: #64748b; margin-bottom: 40px; }
+
+        .ai-input-container {
+            max-width: 600px; margin: 0 auto; position: relative;
+        }
+        .ai-input {
+            width: 100%; padding: 20px 25px; border-radius: 50px; border: 1px solid #cbd5e1;
+            font-size: 1rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); outline: none; transition: 0.3s;
+        }
+        .ai-input:focus { border-color: var(--primary); box-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.2); }
+        .ai-btn {
+            position: absolute; right: 10px; top: 8px; background: var(--primary); color: white;
+            border: none; padding: 12px 25px; border-radius: 30px; font-weight: 600; cursor: pointer;
+        }
+
+        /* Resultados Sugeridos */
+        .results { padding: 40px; max-width: 1000px; margin: 0 auto; }
+        .section-title { font-size: 0.9rem; text-transform: uppercase; color: #94a3b8; font-weight: 700; margin-bottom: 20px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .card { background: white; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; transition: transform 0.2s; cursor: pointer; }
+        .card:hover { transform: translateY(-5px); }
+        .card-img { height: 180px; width: 100%; background-color: #eee; position: relative; }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; }
+        .badge { position: absolute; top: 10px; left: 10px; background: rgba(255,255,255,0.9); padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: bold; color: var(--primary); }
+        
+        .card-body { padding: 20px; }
+        .card-body h3 { margin: 0 0 5px 0; font-size: 1.1rem; }
+        .card-body p { margin: 0; font-size: 0.9rem; color: #64748b; }
+        .match { display: inline-block; margin-top: 15px; font-size: 0.8rem; color: #059669; background: #d1fae5; padding: 4px 8px; border-radius: 4px; }
+
+        /* Simulación de Chat IA */
+        .chat-bubble {
+            max-width: 500px; margin: 40px auto; background: white; padding: 20px; border-radius: 20px;
+            border: 1px solid #e2e8f0; display: flex; gap: 15px; align-items: start;
+        }
+        .ai-avatar { width: 40px; height: 40px; background: linear-gradient(135deg, #2563eb, #9333ea); border-radius: 50%; flex-shrink: 0; }
+        .chat-content strong { display: block; margin-bottom: 5px; font-size: 0.9rem; }
+        .chat-content p { margin: 0; font-size: 0.9rem; color: #475569; line-height: 1.5; }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">NOVA.</div>
+        <div class="user"></div>
+    </nav>
+
+    <div class="hero">
+        <h1>Diseña tu viaje perfecto.<br>En segundos.</h1>
+        <p>Cuéntale a nuestra IA qué te apetece y olvídate de planificar.</p>
+        
+        <div class="ai-input-container">
+            <input type="text" class="ai-input" value="Viaje de 5 días a Japón, presupuesto medio y mucha comida..." readonly>
+            <button class="ai-btn">Generar ✨</button>
+        </div>
+    </div>
+
+    <div class="chat-bubble">
+        <div class="ai-avatar"></div>
+        <div class="chat-content">
+            <strong>Nova AI Assistant</strong>
+            <p>¡Entendido! Basándome en tu amor por la gastronomía, he creado una ruta por Osaka y Kioto evitando las trampas para turistas. Aquí tienes 3 opciones que encajan con tu presupuesto.</p>
+        </div>
+    </div>
+
+    <div class="results">
+        <div class="section-title">Recomendado para ti</div>
+        <div class="grid">
+            <div class="card">
+                <div class="card-img">
+                    <span class="badge">Opción 1</span>
+                    <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=800" alt="Kyoto">
+                </div>
+                <div class="card-body">
+                    <h3>Ruta Gastronómica Kioto</h3>
+                    <p>5 Días • Vuelos incluidos</p>
+                    <div class="match">98% Coincidencia</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <span class="badge">Opción 2</span>
+                    <img src="https://images.unsplash.com/photo-1528360983277-13d9b152c6d4?q=80&w=800" alt="Tokyo">
+                </div>
+                <div class="card-body">
+                    <h3>Luces de Neón & Sushi</h3>
+                    <p>5 Días • Hotel 4 Estrellas</p>
+                    <div class="match">92% Coincidencia</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <span class="badge">Económico</span>
+                    <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?q=80&w=800" alt="Osaka">
+                </div>
+                <div class="card-body">
+                    <h3>Osaka Street Food</h3>
+                    <p>5 Días • Hostales Premium</p>
+                    <div class="match">85% Coincidencia</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
