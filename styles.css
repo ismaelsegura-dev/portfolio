@@ -46,7 +46,6 @@ main {
     height: 100vh; padding: 0 3rem; align-items: center; position: relative;
 }
 .hero-content { z-index: 10; position: relative; pointer-events: none; }
-/* Importante: reactivar clicks en los elementos hijos */
 .hero-content h1, .hero-content p, .hero-content .badge { pointer-events: auto; }
 
 .badge {
@@ -63,16 +62,15 @@ h1 {
 }
 p { color: var(--gray); font-size: 1.1rem; max-width: 500px; margin-bottom: 3rem; line-height: 1.6; }
 
-/* === AQUÍ ESTÁN LOS BOTONES (ARREGLADOS) === */
+/* === BOTONES (ALINEADOS) === */
 .cta-container { 
     display: flex; 
     gap: 20px; 
     align-items: center; 
-    pointer-events: auto; /* Vital para que se puedan clicar */
+    pointer-events: auto; 
     margin-top: 20px;
 }
 
-/* Estilos compartidos para que midan EXACTAMENTE lo mismo */
 .primary-btn, .secondary-btn {
     height: 50px;
     padding: 0 40px;
@@ -84,24 +82,22 @@ p { color: var(--gray); font-size: 1.1rem; max-width: 500px; margin-bottom: 3rem
     display: flex;
     align-items: center;
     justify-content: center;
-    box-sizing: border-box; /* Esto asegura que el borde no cambie el tamaño */
+    box-sizing: border-box;
     transition: transform 0.2s ease, background 0.2s;
     text-transform: uppercase;
 }
 
-/* Botón Negro (Ver Proyectos) */
 .primary-btn {
-    background-color: #0a0a0a; /* Negro fijo */
-    color: #ffffff;            /* Blanco fijo */
-    border: 1px solid transparent; /* Truco: borde invisible para igualar altura */
+    background-color: #0a0a0a;
+    color: #ffffff;
+    border: 1px solid transparent;
 }
 .primary-btn:hover { transform: scale(1.05); }
 
-/* Botón Transparente (Servicios) */
 .secondary-btn {
     background-color: transparent;
-    color: #0a0a0a;            /* Negro fijo */
-    border: 1px solid rgba(0,0,0,0.3); /* Borde visible */
+    color: #0a0a0a;
+    border: 1px solid rgba(0,0,0,0.3);
 }
 .secondary-btn:hover { background-color: rgba(0,0,0,0.05); }
 
@@ -111,51 +107,4 @@ p { color: var(--gray); font-size: 1.1rem; max-width: 500px; margin-bottom: 3rem
 
 /* === BARRA INFERIOR === */
 .bottom-bar {
-    position: absolute; bottom: 0; left: 0; width: 100%; padding: 2rem 3rem;
-    display: flex; justify-content: space-between; align-items: flex-end;
-    font-size: 0.7rem; color: var(--gray); letter-spacing: 1px; z-index: 10;
-}
-.stat span { display: block; color: var(--text); margin-bottom: 5px; font-weight: bold; }
-
-/* === PROYECTOS === */
-.projects-section { padding: 10rem 3rem; position: relative; z-index: 20; background: var(--bg); }
-.section-header h2 { font-family: 'Syncopate', sans-serif; font-size: 3rem; margin-bottom: 4rem; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 2rem; color: var(--text); }
-.projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; }
-.project-card { position: relative; cursor: pointer; transition: transform 0.4s ease; }
-.project-card:hover { transform: translateY(-10px); }
-.project-card.large { grid-column: span 2; }
-.card-image { width: 100%; height: 60vh; overflow: hidden; border-radius: 4px; margin-bottom: 1.5rem; position: relative; background-color: #ccc; }
-.project-card:not(.large) .card-image { height: 40vh; }
-.card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
-.project-card:hover img { transform: scale(1.05); }
-.card-info h3 { font-family: 'Syncopate', sans-serif; font-size: 1.5rem; margin: 0 0 0.5rem 0; color: var(--text); }
-.tags span { border: 1px solid rgba(0,0,0,0.2); padding: 4px 12px; border-radius: 20px; font-size: 0.6rem; text-transform: uppercase; margin-right: 5px; color: var(--gray); }
-
-/* === RESPONSIVE === */
-@media (max-width: 768px) {
-    main { grid-template-columns: 1fr; padding-top: 6rem; text-align: center; }
-    h1 { font-size: 3rem; }
-    .cta-container { justify-content: center; }
-    .hero-3d { position: relative; width: 100%; height: 50vh; order: -1; }
-    .bottom-bar { display: none; }
-    .projects-grid { grid-template-columns: 1fr; }
-    .project-card.large { grid-column: span 1; }
-}
-
-/* === CURSOR (BOLA + ANILLO) === */
-.cursor-dot {
-    width: 6px; height: 6px; background-color: var(--text);
-    position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
-    border-radius: 50%; z-index: 9999; pointer-events: none;
-}
-.cursor-outline {
-    width: 30px; height: 30px; border: 1px solid rgba(0,0,0,0.5);
-    position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
-    border-radius: 50%; z-index: 9998; pointer-events: none;
-    transition: width 0.2s, height 0.2s, background-color 0.2s;
-}
-/* Efecto al pasar por encima de botones o enlaces */
-body:has(a:hover) .cursor-outline,
-body:has(button:hover) .cursor-outline {
-    width: 50px; height: 50px; background-color: rgba(0,0,0,0.05); border-color: transparent;
-}
+    position: absolute; bottom: 0; left: 0; width: 10
