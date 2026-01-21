@@ -33,10 +33,8 @@ nav {
     z-index: 100;
 }
 .logo { font-family: 'Syncopate', sans-serif; font-weight: 700; font-size: 1.5rem; letter-spacing: -1px; color: var(--text); }
-
 .menu a { text-decoration: none; color: var(--text); margin-left: 2rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; font-weight: 600; transition: color 0.3s; }
 .menu a:hover { color: var(--accent); }
-
 .contact-btn { border: 1px solid rgba(0,0,0,0.2); padding: 10px 25px; border-radius: 50px; transition: 0.3s; color: var(--text); }
 .contact-btn:hover { background: var(--text); color: var(--bg) !important; }
 
@@ -62,7 +60,7 @@ h1 {
 }
 p { color: var(--gray); font-size: 1.1rem; max-width: 500px; margin-bottom: 3rem; line-height: 1.6; }
 
-/* === BOTONES (ALINEADOS) === */
+/* === BOTONES ALINEADOS === */
 .cta-container { 
     display: flex; 
     gap: 20px; 
@@ -70,41 +68,135 @@ p { color: var(--gray); font-size: 1.1rem; max-width: 500px; margin-bottom: 3rem
     pointer-events: auto; 
     margin-top: 20px;
 }
-
 .primary-btn, .secondary-btn {
-    height: 50px;
-    padding: 0 40px;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
-    font-family: 'Syncopate', sans-serif;
-    font-size: 0.7rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    transition: transform 0.2s ease, background 0.2s;
-    text-transform: uppercase;
+    height: 50px; padding: 0 40px; border-radius: 4px; font-weight: bold; cursor: pointer;
+    font-family: 'Syncopate', sans-serif; font-size: 0.7rem; display: flex; align-items: center; justify-content: center;
+    box-sizing: border-box; transition: transform 0.2s ease, background 0.2s; text-transform: uppercase;
 }
-
-.primary-btn {
-    background-color: #0a0a0a;
-    color: #ffffff;
-    border: 1px solid transparent;
-}
+.primary-btn { background-color: #0a0a0a; color: #ffffff; border: 1px solid transparent; }
 .primary-btn:hover { transform: scale(1.05); }
-
-.secondary-btn {
-    background-color: transparent;
-    color: #0a0a0a;
-    border: 1px solid rgba(0,0,0,0.3);
-}
+.secondary-btn { background-color: transparent; color: #0a0a0a; border: 1px solid rgba(0,0,0,0.3); }
 .secondary-btn:hover { background-color: rgba(0,0,0,0.05); }
-
 
 /* === 3D VIEWER === */
 .hero-3d { width: 100%; height: 100%; position: absolute; right: 0; top: 0; z-index: 1; }
 
 /* === BARRA INFERIOR === */
 .bottom-bar {
-    position: absolute; bottom: 0; left: 0; width: 10
+    position: absolute; bottom: 0; left: 0; width: 100%; padding: 2rem 3rem;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    font-size: 0.7rem; color: var(--gray); letter-spacing: 1px; z-index: 10;
+}
+.stat span { display: block; color: var(--text); margin-bottom: 5px; font-weight: bold; }
+
+/* === PROYECTOS (ESTILO BENTO) === */
+.projects-section {
+    padding: 10rem 3rem;
+    position: relative;
+    z-index: 20;
+    background: var(--bg);
+}
+
+.section-header h2 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 2rem;
+    color: var(--text);
+}
+
+.year { font-size: 1rem; color: var(--accent); vertical-align: super; }
+
+/* LAYOUT FLEXBOX PARA BENTO */
+.bento-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.bento-row {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    height: 400px; /* Altura fija para la fila */
+}
+
+/* TARJETAS ELÁSTICAS */
+.project-card {
+    position: relative;
+    flex: 1; /* Todos ocupan lo mismo por defecto */
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* Animación suave */
+}
+
+/* AL HACER HOVER, CRECE */
+.project-card:hover {
+    flex: 3; /* Ocupa 3 veces más espacio */
+}
+
+.project-card img {
+    width: 100%; height: 100%; object-fit: cover;
+    position: absolute; top: 0; left: 0;
+    transition: transform 0.8s ease, filter 0.5s ease;
+    filter: grayscale(100%);
+}
+.project-card:hover img { transform: scale(1.1); filter: grayscale(0%); }
+
+.overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    opacity: 0.6; transition: opacity 0.3s; pointer-events: none;
+}
+.project-card:hover .overlay { opacity: 0.3; }
+
+.card-content {
+    position: absolute; bottom: 30px; left: 30px; z-index: 10;
+    color: white; min-width: 250px;
+}
+.card-content h3 {
+    font-family: 'Syncopate', sans-serif; font-size: 1.5rem; margin: 0; font-weight: 700;
+    transform: translateY(10px); transition: transform 0.4s;
+}
+.card-content p {
+    font-size: 0.9rem; opacity: 0; transform: translateY(10px);
+    transition: all 0.4s; margin-top: 5px; color: rgba(255,255,255,0.8);
+}
+.project-card:hover .card-content h3 { transform: translateY(0); }
+.project-card:hover .card-content p { opacity: 1; transform: translateY(0); }
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    main { grid-template-columns: 1fr; padding-top: 6rem; text-align: center; }
+    h1 { font-size: 3rem; }
+    .cta-container { justify-content: center; }
+    .hero-3d { position: relative; width: 100%; height: 50vh; order: -1; }
+    .bottom-bar { display: none; }
+    
+    /* EN MOVIL SE PONEN UNO DEBAJO DE OTRO */
+    .bento-row { flex-direction: column; height: auto; }
+    .project-card { width: 100%; height: 250px; flex: none; }
+    .project-card:hover { flex: none; }
+    .card-content p { opacity: 1; }
+}
+
+/* === CURSOR === */
+.cursor-dot {
+    width: 6px; height: 6px; background-color: var(--text);
+    position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
+    border-radius: 50%; z-index: 9999; pointer-events: none;
+}
+.cursor-outline {
+    width: 30px; height: 30px; border: 1px solid rgba(0,0,0,0.5);
+    position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
+    border-radius: 50%; z-index: 9998; pointer-events: none;
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+body:has(a:hover) .cursor-outline,
+body:has(button:hover) .cursor-outline,
+body:has(.project-card:hover) .cursor-outline { 
+    width: 50px; height: 50px; background-color: rgba(0,0,0,0.05); border-color: transparent;
+}
