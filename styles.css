@@ -16,7 +16,7 @@ body {
     cursor: none; /* Cursor oculto */
 }
 
-/* === RUIDO === */
+/* === RUIDO DE FONDO === */
 .noise {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -26,24 +26,27 @@ body {
     z-index: 50;
 }
 
-/* === NAV === */
+/* === NAVEGACIÓN === */
 nav {
     position: fixed; top: 0; width: 100%; padding: 2rem 3rem;
     display: flex; justify-content: space-between; align-items: center;
     z-index: 100;
 }
 .logo { font-family: 'Syncopate', sans-serif; font-weight: 700; font-size: 1.5rem; letter-spacing: -1px; color: var(--text); }
+
 .menu a { text-decoration: none; color: var(--text); margin-left: 2rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; font-weight: 600; transition: color 0.3s; }
 .menu a:hover { color: var(--accent); }
+
 .contact-btn { border: 1px solid rgba(0,0,0,0.2); padding: 10px 25px; border-radius: 50px; transition: 0.3s; color: var(--text); }
 .contact-btn:hover { background: var(--text); color: var(--bg) !important; }
 
-/* === HERO === */
+/* === HERO (PORTADA) === */
 main {
     display: grid; grid-template-columns: 1.2fr 1fr;
     height: 100vh; padding: 0 3rem; align-items: center; position: relative;
 }
 .hero-content { z-index: 10; position: relative; pointer-events: none; }
+/* Importante: reactivar clicks en los elementos hijos */
 .hero-content h1, .hero-content p, .hero-content .badge { pointer-events: auto; }
 
 .badge {
@@ -60,45 +63,50 @@ h1 {
 }
 p { color: var(--gray); font-size: 1.1rem; max-width: 500px; margin-bottom: 3rem; line-height: 1.6; }
 
-/* === BOTONES (CORRECCIÓN DE ALTURA) === */
+/* === AQUÍ ESTÁN LOS BOTONES (ARREGLADOS) === */
 .cta-container { 
     display: flex; 
     gap: 20px; 
-    align-items: center; /* Alineación vertical perfecta */
-    pointer-events: auto; 
+    align-items: center; 
+    pointer-events: auto; /* Vital para que se puedan clicar */
+    margin-top: 20px;
 }
 
-/* Estilos comunes para asegurar que sean gemelos en tamaño */
+/* Estilos compartidos para que midan EXACTAMENTE lo mismo */
 .primary-btn, .secondary-btn {
-    height: 50px;          /* Altura fija idéntica */
+    height: 50px;
     padding: 0 40px;
     border-radius: 4px;
     font-weight: bold;
     cursor: pointer;
     font-family: 'Syncopate', sans-serif;
     font-size: 0.7rem;
-    display: flex;         /* Flexbox para centrar el texto dentro */
-    align-items: center;   /* Centrado vertical del texto */
-    justify-content: center; /* Centrado horizontal del texto */
-    box-sizing: border-box; /* El borde cuenta dentro del tamaño */
-    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box; /* Esto asegura que el borde no cambie el tamaño */
+    transition: transform 0.2s ease, background 0.2s;
+    text-transform: uppercase;
 }
 
+/* Botón Negro (Ver Proyectos) */
 .primary-btn {
-    background: var(--text); 
-    color: var(--bg);
-    /* TRUCO: Borde transparente para igualar al otro botón */
-    border: 1px solid transparent; 
+    background-color: #0a0a0a; /* Negro fijo */
+    color: #ffffff;            /* Blanco fijo */
+    border: 1px solid transparent; /* Truco: borde invisible para igualar altura */
 }
 .primary-btn:hover { transform: scale(1.05); }
 
+/* Botón Transparente (Servicios) */
 .secondary-btn {
-    background: transparent; 
-    color: var(--text);
-    border: 1px solid rgba(0,0,0,0.3); /* Este borde es el que causaba el desnivel */
+    background-color: transparent;
+    color: #0a0a0a;            /* Negro fijo */
+    border: 1px solid rgba(0,0,0,0.3); /* Borde visible */
 }
-.secondary-btn:hover { background: rgba(0,0,0,0.05); }
+.secondary-btn:hover { background-color: rgba(0,0,0,0.05); }
 
+
+/* === 3D VIEWER === */
 .hero-3d { width: 100%; height: 100%; position: absolute; right: 0; top: 0; z-index: 1; }
 
 /* === BARRA INFERIOR === */
@@ -134,7 +142,7 @@ p { color: var(--gray); font-size: 1.1rem; max-width: 500px; margin-bottom: 3rem
     .project-card.large { grid-column: span 1; }
 }
 
-/* === CURSOR === */
+/* === CURSOR (BOLA + ANILLO) === */
 .cursor-dot {
     width: 6px; height: 6px; background-color: var(--text);
     position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
@@ -146,6 +154,7 @@ p { color: var(--gray); font-size: 1.1rem; max-width: 500px; margin-bottom: 3rem
     border-radius: 50%; z-index: 9998; pointer-events: none;
     transition: width 0.2s, height 0.2s, background-color 0.2s;
 }
+/* Efecto al pasar por encima de botones o enlaces */
 body:has(a:hover) .cursor-outline,
 body:has(button:hover) .cursor-outline {
     width: 50px; height: 50px; background-color: rgba(0,0,0,0.05); border-color: transparent;
