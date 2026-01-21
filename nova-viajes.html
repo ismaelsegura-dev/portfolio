@@ -22,7 +22,7 @@
     <nav>
         <a href="index.html" class="logo">ISMAEL PGL.</a>
         <div class="menu">
-            <a href="index.html#work">Volver / Cerrar</a>
+            <a href="index.html#work">Volver / Cerrar ✕</a>
         </div>
     </nav>
 
@@ -63,8 +63,26 @@
             </p>
         </div>
 
-        <div class="content-image">
-            <img src="https://images.unsplash.com/photo-1517488627473-b3c99a093375?q=80&w=1500" alt="App UI">
+        <div class="live-preview-container">
+            <div class="browser-mockup">
+                
+                <div class="browser-header">
+                    <div class="window-controls">
+                        <span class="control red"></span>
+                        <span class="control yellow"></span>
+                        <span class="control green"></span>
+                    </div>
+                    <div class="address-bar">
+                        https://www.novaviajes.app/dashboard
+                    </div>
+                </div>
+                
+                <div class="browser-content">
+                    <iframe src="./nova-app-design.html" title="Diseño Nova" style="width: 100%; height: 100%; border: none;"></iframe>
+                </div>
+            
+            </div>
+            <p class="caption">👆 Interactúa: Diseño UI funcional generado para el cliente</p>
         </div>
 
         <div class="content-block">
@@ -86,20 +104,37 @@
         document.addEventListener("DOMContentLoaded", () => {
             gsap.registerPlugin(ScrollTrigger);
 
-            // 1. Cursor Logic (Igual que en home)
+            // A. Lógica del Cursor (Igual que en home)
             const cursorDot = document.querySelector('.cursor-dot');
             const cursorOutline = document.querySelector('.cursor-outline');
+            
             window.addEventListener('mousemove', (e) => {
-                gsap.to(cursorDot, { x: e.clientX, y: e.clientY, duration: 0.1 });
-                gsap.to(cursorOutline, { x: e.clientX, y: e.clientY, duration: 0.5 });
+                const posX = e.clientX;
+                const posY = e.clientY;
+                
+                // Dot instantáneo
+                gsap.to(cursorDot, { x: posX, y: posY, duration: 0.1 });
+                // Anillo con retraso elegante
+                gsap.to(cursorOutline, { x: posX, y: posY, duration: 0.5 });
             });
 
-            // 2. Animación de Entrada
+            // B. Animación de Entrada de la página
             const tl = gsap.timeline();
             tl.from("h1", { y: 100, opacity: 0, duration: 1.2, ease: "power4.out" })
               .from(".subtitle", { opacity: 0, duration: 1 }, "-=0.8")
-              .from(".hero-image-container", { scale: 0.9, opacity: 0, duration: 1.5, ease: "expo.out" }, "-=1")
+              .from(".hero-image-container", { scale: 0.95, opacity: 0, duration: 1.5, ease: "expo.out" }, "-=1")
               .from(".info-column", { y: 20, opacity: 0, stagger: 0.1 }, "-=0.5");
+
+            // C. Efecto Hover en Next Project
+            const nextProject = document.querySelector('.next-project h2');
+            nextProject.addEventListener('mouseenter', () => {
+                const cursorOutline = document.querySelector('.cursor-outline');
+                gsap.to(cursorOutline, { scale: 1.5, backgroundColor: 'rgba(255,255,255,0.1)', duration: 0.3 });
+            });
+            nextProject.addEventListener('mouseleave', () => {
+                const cursorOutline = document.querySelector('.cursor-outline');
+                gsap.to(cursorOutline, { scale: 1, backgroundColor: 'transparent', duration: 0.3 });
+            });
         });
     </script>
 </body>
