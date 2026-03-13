@@ -483,6 +483,7 @@ body:has(button:hover) .cursor-ring {
     padding-left: 0; padding-right: 0;
     padding-top: var(--section-pad);
     padding-bottom: var(--section-pad);
+    overflow: hidden;
 }
 
 .projects-section .section-intro {
@@ -496,14 +497,17 @@ body:has(button:hover) .cursor-ring {
 }
 
 .project-item {
-    position: relative;
+    border-radius: 0;
     overflow: hidden;
     background: var(--grey-dark);
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+    transform: translateY(60px) scale(0.95);
+    transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
 }
-.project-item.visible { opacity: 1; transform: translateY(0); }
+.project-item.visible { 
+    opacity: 1; 
+    transform: translateY(0) scale(1);
+}
 
 .project-item.project-large {
     grid-column: 1 / -1;
@@ -526,12 +530,13 @@ body:has(button:hover) .cursor-ring {
 .project-image-wrap img {
     width: 100%; height: 100%;
     object-fit: cover;
-    filter: grayscale(20%);
+    filter: grayscale(25%) brightness(0.9);
     transition: transform 0.9s var(--ease-out), filter 0.6s;
+    will-change: transform, filter;
 }
 .project-item:hover .project-image-wrap img {
-    transform: scale(1.04);
-    filter: grayscale(0%);
+    transform: scale(1.06);
+    filter: grayscale(0%) brightness(1);
 }
 
 .project-image-overlay {

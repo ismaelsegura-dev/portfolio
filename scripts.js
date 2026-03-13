@@ -92,7 +92,7 @@ const revealObserver = new IntersectionObserver((entries) => {
             // Stagger delay based on index within parent
             const siblings = Array.from(entry.target.parentElement.children);
             const index = siblings.indexOf(entry.target);
-            const delay = index * 80;
+            const delay = index * 100;
 
             setTimeout(() => {
                 entry.target.classList.add('visible');
@@ -102,8 +102,8 @@ const revealObserver = new IntersectionObserver((entries) => {
         }
     });
 }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -60px 0px'
+    threshold: 0.05,
+    rootMargin: '0px 0px -80px 0px'
 });
 
 // Observe all animated elements
@@ -128,7 +128,47 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Section titles fade in
+    // ===== PARALLAX EFFECT EN IMÁGENES DE PROYECTOS =====
+    gsap.utils.toArray('.project-image-wrap').forEach(wrap => {
+        const img = wrap.querySelector('img');
+        if (!img) return;
+
+        gsap.to(img, {
+            scrollTrigger: {
+                trigger: wrap,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 0.8,
+                markers: false
+            },
+            y: (i, target) => {
+                const rect = target.getBoundingClientRect();
+                const scrollPercent = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+                return -80 * scrollPercent;
+            },
+            ease: 'none'
+        });
+    });
+
+    // ===== STAGGERED SCALE & FADE IN PROJECTS =====
+    gsap.utils.toArray('.project-item').forEach((item, i) => {
+        gsap.from(item, {
+            scrollTrigger: {
+                trigger: item,
+                start: 'top 80%',
+                end: 'top 40%',
+                scrub: 1.2,
+                markers: false
+            },
+            opacity: 0,
+            scale: 0.88,
+            y: 100,
+            duration: 1.4,
+            ease: 'power3.out'
+        });
+    });
+
+    // ===== REVEAL SECTION TITLES CON MOVIMIENTO =====
     gsap.utils.toArray('.section-title').forEach(title => {
         gsap.from(title, {
             scrollTrigger: {
@@ -136,14 +176,14 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
                 start: 'top 85%',
                 toggleActions: 'play none none none'
             },
-            y: 40,
+            y: 80,
             opacity: 0,
-            duration: 0.9,
+            duration: 1.1,
             ease: 'power3.out'
         });
     });
 
-    // Section labels
+    // ===== SECTION LABELS SLIDE IN =====
     gsap.utils.toArray('.section-label').forEach(label => {
         gsap.from(label, {
             scrollTrigger: {
@@ -151,14 +191,14 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
                 start: 'top 88%',
                 toggleActions: 'play none none none'
             },
-            x: -20,
+            x: -40,
             opacity: 0,
-            duration: 0.6,
+            duration: 0.9,
             ease: 'power2.out'
         });
     });
 
-    // Contact headline
+    // ===== CONTACT HEADLINE REVEAL =====
     const contactHeadline = document.querySelector('.contact-headline');
     if (contactHeadline) {
         gsap.from(contactHeadline, {
@@ -167,12 +207,44 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
                 start: 'top 80%',
                 toggleActions: 'play none none none'
             },
-            y: 60,
+            y: 100,
             opacity: 0,
-            duration: 1,
+            duration: 1.3,
             ease: 'power3.out'
         });
     }
+
+    // ===== EXPERIENCE ITEMS STAGGER =====
+    gsap.utils.toArray('.exp-item').forEach((item, i) => {
+        gsap.from(item, {
+            scrollTrigger: {
+                trigger: item,
+                start: 'top 75%',
+                toggleActions: 'play none none none'
+            },
+            x: -60,
+            opacity: 0,
+            duration: 0.8,
+            delay: i * 0.1,
+            ease: 'power3.out'
+        });
+    });
+
+    // ===== ARSENAL CARDS BOUNCE IN =====
+    gsap.utils.toArray('.arsenal-card').forEach((card, i) => {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: 'top 75%',
+                toggleActions: 'play none none none'
+            },
+            y: 60,
+            opacity: 0,
+            duration: 0.9,
+            delay: i * 0.12,
+            ease: 'back.out(1.2)'
+        });
+    });
 }
 
 // --- MARQUEE PAUSE ON HOVER ---
