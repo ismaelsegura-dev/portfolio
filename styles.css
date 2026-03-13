@@ -274,8 +274,9 @@ body:has(button:hover) .cursor-ring {
 
 .headline-line {
     overflow: hidden;
-    line-height: 0.88;
-    margin-bottom: 6px;
+    line-height: 0.92;
+    margin-bottom: 4px;
+    padding-bottom: 0.06em;
 }
 
 .headline-line span {
