@@ -3,127 +3,418 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ISMAEL PGL | Arquitecto Digital</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
-    
+    <title>Ismael Segura — Arquitecto Digital</title>
+    <meta name="description" content="Diseño + Desarrollo Web/App + IA + Estrategia. Todo el departamento digital en un solo perfil.">
+    <meta property="og:title" content="Ismael Segura — Arquitecto Digital">
+    <meta property="og:description" content="Estrategia, Diseño y Código en un solo lugar.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Editorial+New:ital,wght@0,400;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Fallback: usando Playfair Display como editorial serif + Inter como sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
+    <!-- Cursor personalizado -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
 
-    <div class="noise"></div>
+    <!-- Overlay de entrada -->
+    <div class="intro-overlay" id="introOverlay">
+        <div class="intro-text">IS.</div>
+    </div>
 
-    <nav>
-        <div class="logo">ISMAEL PGL.</div>
-        <div class="menu">
-            <a href="#work">Proyectos</a>
-            <a href="#about">Sobre mí</a>
-            <a href="#contact" class="contact-btn">Hablemos</a>
+    <!-- Navegación -->
+    <nav id="mainNav">
+        <div class="nav-logo">IS.</div>
+        <div class="nav-links">
+            <a href="#work" class="nav-link">Proyectos</a>
+            <a href="#about" class="nav-link">Trayectoria</a>
+            <a href="#arsenal" class="nav-link">Arsenal</a>
+            <a href="cv-ismael-segura.pdf" download class="nav-cv">
+                <i class="fa-solid fa-file-arrow-down"></i> CV
+            </a>
+            <a href="#contact" class="nav-cta">Hablemos</a>
         </div>
+        <button class="nav-hamburger" id="navHamburger" aria-label="Menú">
+            <span></span><span></span>
+        </button>
     </nav>
 
-    <main>
-        <div class="hero-content">
-            <div class="badge">
-                <span class="dot"></span> DISPONIBLE PARA NUEVOS RETOS
+    <!-- Menú móvil -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#work" class="mobile-link">Proyectos</a>
+        <a href="#about" class="mobile-link">Trayectoria</a>
+        <a href="#arsenal" class="mobile-link">Arsenal</a>
+        <a href="cv-ismael-segura.pdf" download class="mobile-link">Descargar CV</a>
+        <a href="#contact" class="mobile-link mobile-cta">Hablemos</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-eyebrow">
+            <span class="availability-dot"></span>
+            <span>Disponible para nuevos retos — Sevilla / Remoto</span>
+        </div>
+
+        <div class="hero-headline">
+            <div class="headline-line" data-reveal>
+                <span>ARQUITECTO</span>
             </div>
-            <h1>ARQUITECTO<br>DE REALIDAD<br>DIGITAL</h1>
-            <p>
-                Diseño experiencias web inmersivas e integro Inteligencia Artificial para potenciar negocios locales y marcas del futuro.
-            </p>
-            <div class="cta-container">
-                <button class="primary-btn">VER PROYECTOS</button>
-                <button class="secondary-btn">SERVICIOS</button>
+            <div class="headline-line italic" data-reveal>
+                <span>de realidad</span>
+            </div>
+            <div class="headline-line" data-reveal>
+                <span>DIGITAL.</span>
             </div>
         </div>
 
-        <div class="hero-3d">
-            <script type="module" src="https://unpkg.com/@splinetool/viewer@latest/build/spline-viewer.js"></script>
-            <spline-viewer url="https://prod.spline.design/Mm97ZgkV5GGzhXXA/scene.splinecode"></spline-viewer>
+        <div class="hero-sub">
+            <p>Diseño + Desarrollo Web/App + IA + Estrategia.<br>Todo el departamento digital en un solo perfil.</p>
+            <div class="hero-actions">
+                <a href="#work" class="btn-primary">Ver proyectos</a>
+                <a href="#contact" class="btn-ghost">Contactar</a>
+            </div>
         </div>
-    </main>
 
-    <div class="bottom-bar">
-        <div class="stat">
-            <span>UBICACIÓN</span>
-            <p>Sevilla, España / Remoto</p>
+        <div class="hero-meta">
+            <div class="meta-item">
+                <span class="meta-label">Especialidad</span>
+                <span class="meta-value">IA / WebGL / Diseño Ético</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Desde</span>
+                <span class="meta-value">2018</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Proyectos</span>
+                <span class="meta-value">+40</span>
+            </div>
         </div>
-        <div class="stat">
-            <span>ESPECIALIDAD</span>
-            <p>IA / WebGL / Diseño Ético</p>
+
+        <div class="hero-scroll-hint">
+            <div class="scroll-line"></div>
+            <span>Scroll</span>
         </div>
-        <div class="scroll-indicator">
-            SCROLL PARA EXPLORAR ↓
+    </section>
+
+    <!-- MARQUEE DE HERRAMIENTAS -->
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <div class="marquee-inner">
+                <span>Gemini Pro</span><span class="sep">·</span>
+                <span>React</span><span class="sep">·</span>
+                <span>Figma</span><span class="sep">·</span>
+                <span>JavaScript</span><span class="sep">·</span>
+                <span>WordPress</span><span class="sep">·</span>
+                <span>Canva Pro</span><span class="sep">·</span>
+                <span>Adobe Suite</span><span class="sep">·</span>
+                <span>Zapier</span><span class="sep">·</span>
+                <span>Blockchain</span><span class="sep">·</span>
+                <span>Higgsfield</span><span class="sep">·</span>
+                <span>Photoshop</span><span class="sep">·</span>
+                <span>MacBook M2</span><span class="sep">·</span>
+                <!-- duplicado para loop -->
+                <span>Gemini Pro</span><span class="sep">·</span>
+                <span>React</span><span class="sep">·</span>
+                <span>Figma</span><span class="sep">·</span>
+                <span>JavaScript</span><span class="sep">·</span>
+                <span>WordPress</span><span class="sep">·</span>
+                <span>Canva Pro</span><span class="sep">·</span>
+                <span>Adobe Suite</span><span class="sep">·</span>
+                <span>Zapier</span><span class="sep">·</span>
+                <span>Blockchain</span><span class="sep">·</span>
+                <span>Higgsfield</span><span class="sep">·</span>
+                <span>Photoshop</span><span class="sep">·</span>
+                <span>MacBook M2</span><span class="sep">·</span>
+            </div>
         </div>
     </div>
 
-    <section id="work" class="projects-section">
-        <div class="section-header">
-            <h2>PROYECTOS <span class="year">2026</span></h2>
+    <!-- PROYECTOS -->
+    <section id="work" class="section projects-section">
+        <div class="section-intro">
+            <div class="section-label">01 — Proyectos</div>
+            <h2 class="section-title">
+                Trabajo <em>real,</em><br>resultados reales.
+            </h2>
         </div>
 
-        <div class="bento-container">
-            
-            <div class="bento-row">
-                
-                <a href="nova-viajes.html" class="project-card">
-                    <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2000" alt="Nova Viajes">
-                    <div class="card-content">
-                        <h3>NOVA VIAJES</h3>
-                        <p>AI Travel Planner</p>
-                    </div>
-                    <div class="overlay"></div>
-                </a>
+        <div class="projects-grid">
 
-                <a href="#" class="project-card">
-                    <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?q=80&w=1000" alt="Mercado Fresh">
-                    <div class="card-content">
-                        <h3>MERCADO FRESH</h3>
-                        <p>Local Commerce Hub</p>
+            <!-- Proyecto grande: CERTIO -->
+            <article class="project-item project-large" data-project>
+                <div class="project-image-wrap">
+                    <img src="proyecto3.jpg" alt="CERTIO: Protocolo de Confianza" loading="lazy">
+                    <div class="project-image-overlay"></div>
+                </div>
+                <div class="project-info">
+                    <div class="project-meta-row">
+                        <span class="project-category">Blockchain & IA</span>
+                        <span class="project-year">2025</span>
                     </div>
-                    <div class="overlay"></div>
-                </a>
+                    <h3 class="project-name">CERTIO</h3>
+                    <p class="project-desc">Plataforma de trazabilidad inmutable sobre <strong>Polygon</strong> con notas de cata generadas por <strong>Gemini Pro</strong>. Hemos jubilado los sellos de papel garantizando origen y pureza del aceite de oliva.</p>
+                    <a href="https://certio.vercel.app" target="_blank" rel="noopener" class="project-link">
+                        Ver proyecto <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Proyecto: Mezquita Guadaíra -->
+            <article class="project-item" data-project>
+                <div class="project-image-wrap">
+                    <img src="proyecto2.png" alt="Mezquita Guadaíra Digital" loading="lazy">
+                    <div class="project-image-overlay"></div>
+                </div>
+                <div class="project-info">
+                    <div class="project-meta-row">
+                        <span class="project-category">Web Experience & Social</span>
+                        <span class="project-year">2024</span>
+                    </div>
+                    <h3 class="project-name">Mezquita Guadaíra</h3>
+                    <p class="project-desc">Portal web de alto impacto visual y estrategia de contenidos para unificar la identidad digital de la comunidad.</p>
+                    <a href="https://fusaman.github.io/mezquitaguadaira/" target="_blank" rel="noopener" class="project-link">
+                        Ver proyecto <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Proyecto: EdTech -->
+            <article class="project-item" data-project>
+                <div class="project-image-wrap">
+                    <img src="proyecto1.png" alt="Ecosistema EdTech 360º" loading="lazy">
+                    <div class="project-image-overlay"></div>
+                </div>
+                <div class="project-info">
+                    <div class="project-meta-row">
+                        <span class="project-category">Plataforma Web</span>
+                        <span class="project-year">2023</span>
+                    </div>
+                    <h3 class="project-name">Ecosistema EdTech 360º</h3>
+                    <p class="project-desc">Digitalización integral para DTalento. Gestión escalable de alumnos, automatización de procesos y retención.</p>
+                    <a href="https://dtalento.es/" target="_blank" rel="noopener" class="project-link">
+                        Ver proyecto <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Proyecto: Nova Viajes -->
+            <article class="project-item" data-project>
+                <div class="project-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1200" alt="Nova Viajes" loading="lazy">
+                    <div class="project-image-overlay"></div>
+                </div>
+                <div class="project-info">
+                    <div class="project-meta-row">
+                        <span class="project-category">AI Travel</span>
+                        <span class="project-year">2026</span>
+                    </div>
+                    <h3 class="project-name">Nova Viajes</h3>
+                    <p class="project-desc">AI Travel Planner que genera itinerarios personalizados combinando modelos de lenguaje con datos en tiempo real.</p>
+                    <a href="nova-viajes.html" class="project-link">
+                        Ver proyecto <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Proyecto: Oliva Cert -->
+            <article class="project-item" data-project>
+                <div class="project-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1474978528675-4a50a4508dc3?q=80&w=1200" alt="Oliva Certified" loading="lazy">
+                    <div class="project-image-overlay"></div>
+                </div>
+                <div class="project-info">
+                    <div class="project-meta-row">
+                        <span class="project-category">Blockchain</span>
+                        <span class="project-year">2025</span>
+                    </div>
+                    <h3 class="project-name">Oliva Cert.</h3>
+                    <p class="project-desc">Sistema de certificación de aceite de oliva mediante trazabilidad blockchain. Transparencia desde el olivo hasta la mesa.</p>
+                    <a href="oliva-certified.html" class="project-link">
+                        Ver proyecto <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- TRAYECTORIA -->
+    <section id="about" class="section about-section">
+        <div class="section-intro">
+            <div class="section-label">02 — Trayectoria</div>
+            <h2 class="section-title">
+                No busques agencia.<br><em>Busca talento.</em>
+            </h2>
+            <p class="section-desc">Diseño, desarrollo, IA y estrategia. Todo el departamento digital en un solo perfil con más de 6 años de experiencia probada.</p>
+        </div>
+
+        <div class="experience-list">
+
+            <div class="exp-item" data-exp>
+                <div class="exp-left">
+                    <span class="exp-period">Actualidad</span>
+                    <span class="exp-company">DTalento / Directotelmark</span>
+                </div>
+                <div class="exp-right">
+                    <h3 class="exp-role">Director de Plataformas & Marketing</h3>
+                    <p class="exp-desc">Lidero la estrategia 360º. No solo hago marketing, dirijo la infraestructura tecnológica y educativa. Crecimiento real basado en datos.</p>
+                    <div class="exp-tags">
+                        <span>Liderazgo</span><span>EdTech</span><span>Growth</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="bento-row">
-                
-                <a href="oliva-certified.html" class="project-card">
-                    <img src="https://images.unsplash.com/photo-1474978528675-4a50a4508dc3?q=80&w=1000" alt="Oliva">
-                    <div class="card-content">
-                        <h3>OLIVA CERT.</h3>
-                        <p>Blockchain Traceability</p>
+            <div class="exp-item" data-exp>
+                <div class="exp-left">
+                    <span class="exp-period">Proyecto Clave</span>
+                    <span class="exp-company">Mezquita Guadaíra</span>
+                </div>
+                <div class="exp-right">
+                    <h3 class="exp-role">Digital Manager & Web Lead</h3>
+                    <p class="exp-desc">Diseño de experiencia web inmersiva y gestión estratégica de Redes Sociales. Creación de comunidad digital de alto impacto.</p>
+                    <div class="exp-tags">
+                        <span>Web Design</span><span>Social Media</span>
                     </div>
-                    <div class="overlay"></div>
-                </a>
+                </div>
+            </div>
 
-                <a href="#" class="project-card">
-                    <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=1000" alt="Drone">
-                    <div class="card-content">
-                        <h3>AERO LAB</h3>
-                        <p>Drone Interface UI</p>
+            <div class="exp-item" data-exp>
+                <div class="exp-left">
+                    <span class="exp-period">Desde 2018</span>
+                    <span class="exp-company">Freelance</span>
+                </div>
+                <div class="exp-right">
+                    <h3 class="exp-role">Digital Solopreneur</h3>
+                    <p class="exp-desc">Desarrollo de Apps y Webs a medida. Implementación de IA para automatización de negocios locales y marcas del futuro.</p>
+                    <div class="exp-tags">
+                        <span>Full Stack</span><span>AI Automation</span>
                     </div>
-                    <div class="overlay"></div>
-                </a>
-
-                <a href="#" class="project-card">
-                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1000" alt="Cyber">
-                    <div class="card-content">
-                        <h3>CYBER SEC</h3>
-                        <p>Data Vault System</p>
-                    </div>
-                    <div class="overlay"></div>
-                </a>
+                </div>
             </div>
 
         </div>
     </section>
 
-    <script src="./script.js"></script>
+    <!-- ARSENAL -->
+    <section id="arsenal" class="section arsenal-section">
+        <div class="section-intro">
+            <div class="section-label">03 — Arsenal</div>
+            <h2 class="section-title">
+                Formación &<br><em>herramientas.</em>
+            </h2>
+        </div>
+
+        <div class="arsenal-grid">
+
+            <div class="arsenal-card card-formation" data-arsenal>
+                <div class="arsenal-card-label">Formación</div>
+                <div class="formation-item">
+                    <div class="formation-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div>
+                        <h4>Stanford Online</h4>
+                        <p>Doble Especialización</p>
+                        <ul>
+                            <li>Cybersecurity Analyst</li>
+                            <li>Software Testing & QA</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="formation-item formation-secondary">
+                    <div class="formation-icon"><i class="fa-solid fa-certificate"></i></div>
+                    <div>
+                        <h4>Formación Oficial</h4>
+                        <p>🇪🇸 España — Cert. Profesional: Gestión Comercial & Admin.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arsenal-card card-languages" data-arsenal>
+                <div class="arsenal-card-label">Idiomas</div>
+                <div class="lang-list">
+                    <div class="lang-item">
+                        <span class="lang-name">Español</span>
+                        <div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div>
+                        <span class="lang-level">Nativo</span>
+                    </div>
+                    <div class="lang-item">
+                        <span class="lang-name">Inglés</span>
+                        <div class="lang-bar"><div class="lang-fill" style="width:85%"></div></div>
+                        <span class="lang-level">C1</span>
+                    </div>
+                    <div class="lang-item">
+                        <span class="lang-name">Catalán</span>
+                        <div class="lang-bar"><div class="lang-fill" style="width:65%"></div></div>
+                        <span class="lang-level">B2</span>
+                    </div>
+                    <div class="lang-item">
+                        <span class="lang-name">Árabe</span>
+                        <div class="lang-bar"><div class="lang-fill" style="width:25%"></div></div>
+                        <span class="lang-level">Básico</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arsenal-card card-tools" data-arsenal>
+                <div class="arsenal-card-label">Setup & Licencias PRO</div>
+                <p class="tools-desc">Infraestructura propia. <strong>Valor añadido inmediato.</strong></p>
+                <div class="tools-grid">
+                    <div class="tool-chip"><i class="fa-solid fa-laptop"></i> MacBook M2</div>
+                    <div class="tool-chip"><i class="fa-solid fa-gem"></i> Gemini Pro</div>
+                    <div class="tool-chip"><i class="fa-solid fa-palette"></i> Canva Pro</div>
+                    <div class="tool-chip"><i class="fa-solid fa-layer-group"></i> Adobe Suite</div>
+                    <div class="tool-chip"><i class="fa-brands fa-figma"></i> Figma</div>
+                    <div class="tool-chip"><i class="fa-brands fa-react"></i> React</div>
+                    <div class="tool-chip"><i class="fa-brands fa-wordpress"></i> WordPress</div>
+                    <div class="tool-chip"><i class="fa-solid fa-bolt"></i> Zapier</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contact" class="section contact-section">
+        <div class="contact-inner">
+            <div class="section-label">04 — Contacto</div>
+            <h2 class="contact-headline">
+                ¿Hablamos<br>de <em>negocio?</em>
+            </h2>
+            <p class="contact-sub">Estrategia, Diseño y Código en un solo lugar.</p>
+            <a href="mailto:cmismaelsegura@gmail.com" class="contact-email">
+                cmismaelsegura@gmail.com
+            </a>
+            <div class="contact-links">
+                <a href="https://www.linkedin.com/in/ismaelbuitrago" target="_blank" rel="noopener" class="contact-social">
+                    LinkedIn <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+                <a href="https://wa.me/34653257414" target="_blank" rel="noopener" class="contact-social">
+                    WhatsApp <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+                <a href="cv-ismael-segura.pdf" download class="contact-social">
+                    Descargar CV <i class="fa-solid fa-file-arrow-down"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span class="footer-logo">IS.</span>
+            <span class="footer-copy">© 2026 Ismael Segura Buitrago — Arquitecto Digital</span>
+            <span class="footer-location">Sevilla, España</span>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
 </body>
 </html>
