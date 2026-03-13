@@ -85,32 +85,6 @@ if (hamburger && mobileMenu) {
     });
 }
 
-// --- SCROLL REVEAL (IntersectionObserver) ---
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-            // Stagger delay based on index within parent
-            const siblings = Array.from(entry.target.parentElement.children);
-            const index = siblings.indexOf(entry.target);
-            const delay = index * 100;
-
-            setTimeout(() => {
-                entry.target.classList.add('visible');
-            }, delay);
-
-            revealObserver.unobserve(entry.target);
-        }
-    });
-}, {
-    threshold: 0.05,
-    rootMargin: '0px 0px -80px 0px'
-});
-
-// Observe all animated elements
-document.querySelectorAll('.project-item, .exp-item, .arsenal-card').forEach(el => {
-    revealObserver.observe(el);
-});
-
 // --- SMOOTH ANCHOR SCROLL ---
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
@@ -138,33 +112,31 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
                 trigger: wrap,
                 start: 'top bottom',
                 end: 'bottom top',
-                scrub: 0.8,
+                scrub: 0.6,
                 markers: false
             },
             y: (i, target) => {
                 const rect = target.getBoundingClientRect();
                 const scrollPercent = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-                return -80 * scrollPercent;
+                return -60 * scrollPercent;
             },
             ease: 'none'
         });
     });
 
-    // ===== STAGGERED SCALE & FADE IN PROJECTS =====
+    // ===== SCALE PROJECTS ON SCROLL =====
     gsap.utils.toArray('.project-item').forEach((item, i) => {
-        gsap.from(item, {
+        gsap.to(item, {
             scrollTrigger: {
                 trigger: item,
-                start: 'top 80%',
-                end: 'top 40%',
-                scrub: 1.2,
+                start: 'top 60%',
+                end: 'top 30%',
+                scrub: 0.8,
                 markers: false
             },
-            opacity: 0,
-            scale: 0.88,
-            y: 100,
-            duration: 1.4,
-            ease: 'power3.out'
+            scale: 1,
+            opacity: 1,
+            ease: 'power2.out'
         });
     });
 
@@ -176,9 +148,9 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
                 start: 'top 85%',
                 toggleActions: 'play none none none'
             },
-            y: 80,
+            y: 60,
             opacity: 0,
-            duration: 1.1,
+            duration: 1,
             ease: 'power3.out'
         });
     });
@@ -191,9 +163,9 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
                 start: 'top 88%',
                 toggleActions: 'play none none none'
             },
-            x: -40,
+            x: -30,
             opacity: 0,
-            duration: 0.9,
+            duration: 0.8,
             ease: 'power2.out'
         });
     });
@@ -207,9 +179,9 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
                 start: 'top 80%',
                 toggleActions: 'play none none none'
             },
-            y: 100,
+            y: 80,
             opacity: 0,
-            duration: 1.3,
+            duration: 1.2,
             ease: 'power3.out'
         });
     }
@@ -222,10 +194,10 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
                 start: 'top 75%',
                 toggleActions: 'play none none none'
             },
-            x: -60,
+            x: -50,
             opacity: 0,
-            duration: 0.8,
-            delay: i * 0.1,
+            duration: 0.7,
+            delay: i * 0.08,
             ease: 'power3.out'
         });
     });
@@ -238,11 +210,11 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
                 start: 'top 75%',
                 toggleActions: 'play none none none'
             },
-            y: 60,
+            y: 50,
             opacity: 0,
-            duration: 0.9,
-            delay: i * 0.12,
-            ease: 'back.out(1.2)'
+            duration: 0.8,
+            delay: i * 0.1,
+            ease: 'back.out(1.1)'
         });
     });
 }

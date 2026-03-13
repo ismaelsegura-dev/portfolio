@@ -500,9 +500,8 @@ body:has(button:hover) .cursor-ring {
     border-radius: 0;
     overflow: hidden;
     background: var(--grey-dark);
-    opacity: 0;
-    transform: translateY(60px) scale(0.95);
-    transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
 .project-item.visible { 
     opacity: 1; 
