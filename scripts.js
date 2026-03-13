@@ -1,5 +1,6 @@
 /* =========================================
-   ISMAEL SEGURA — SCRIPTS
+   ISMAEL SEGURA — SCRIPTS (VERSIÓN LIMPIA)
+   Solo efectos de scroll seguros, sin revelados
    ========================================= */
 
 // --- INTRO ANIMATION ---
@@ -98,18 +99,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// --- GSAP SCROLL ANIMATIONS (if GSAP available) ---
+// --- GSAP SCROLL EFFECTS (SOLO PARALLAX, SIN REVELADOS) ---
 if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
     // ===== PARALLAX EFFECT EN IMÁGENES DE PROYECTOS =====
-    gsap.utils.toArray('.project-image-wrap').forEach(wrap => {
-        const img = wrap.querySelector('img');
-        if (!img) return;
-
+    gsap.utils.toArray('.project-image-wrap img').forEach(img => {
         gsap.to(img, {
             scrollTrigger: {
-                trigger: wrap,
+                trigger: img.closest('.project-image-wrap'),
                 start: 'top bottom',
                 end: 'bottom top',
                 scrub: 0.6,
@@ -118,103 +116,9 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             y: (i, target) => {
                 const rect = target.getBoundingClientRect();
                 const scrollPercent = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-                return -60 * scrollPercent;
+                return -40 * scrollPercent;
             },
             ease: 'none'
-        });
-    });
-
-    // ===== SCALE PROJECTS ON SCROLL =====
-    gsap.utils.toArray('.project-item').forEach((item, i) => {
-        gsap.to(item, {
-            scrollTrigger: {
-                trigger: item,
-                start: 'top 60%',
-                end: 'top 30%',
-                scrub: 0.8,
-                markers: false
-            },
-            scale: 1,
-            opacity: 1,
-            ease: 'power2.out'
-        });
-    });
-
-    // ===== REVEAL SECTION TITLES CON MOVIMIENTO =====
-    gsap.utils.toArray('.section-title').forEach(title => {
-        gsap.from(title, {
-            scrollTrigger: {
-                trigger: title,
-                start: 'top 85%',
-                toggleActions: 'play none none none'
-            },
-            y: 60,
-            opacity: 0,
-            duration: 1,
-            ease: 'power3.out'
-        });
-    });
-
-    // ===== SECTION LABELS SLIDE IN =====
-    gsap.utils.toArray('.section-label').forEach(label => {
-        gsap.from(label, {
-            scrollTrigger: {
-                trigger: label,
-                start: 'top 88%',
-                toggleActions: 'play none none none'
-            },
-            x: -30,
-            opacity: 0,
-            duration: 0.8,
-            ease: 'power2.out'
-        });
-    });
-
-    // ===== CONTACT HEADLINE REVEAL =====
-    const contactHeadline = document.querySelector('.contact-headline');
-    if (contactHeadline) {
-        gsap.from(contactHeadline, {
-            scrollTrigger: {
-                trigger: contactHeadline,
-                start: 'top 80%',
-                toggleActions: 'play none none none'
-            },
-            y: 80,
-            opacity: 0,
-            duration: 1.2,
-            ease: 'power3.out'
-        });
-    }
-
-    // ===== EXPERIENCE ITEMS STAGGER =====
-    gsap.utils.toArray('.exp-item').forEach((item, i) => {
-        gsap.from(item, {
-            scrollTrigger: {
-                trigger: item,
-                start: 'top 75%',
-                toggleActions: 'play none none none'
-            },
-            x: -50,
-            opacity: 0,
-            duration: 0.7,
-            delay: i * 0.08,
-            ease: 'power3.out'
-        });
-    });
-
-    // ===== ARSENAL CARDS BOUNCE IN =====
-    gsap.utils.toArray('.arsenal-card').forEach((card, i) => {
-        gsap.from(card, {
-            scrollTrigger: {
-                trigger: card,
-                start: 'top 75%',
-                toggleActions: 'play none none none'
-            },
-            y: 50,
-            opacity: 0,
-            duration: 0.8,
-            delay: i * 0.1,
-            ease: 'back.out(1.1)'
         });
     });
 }

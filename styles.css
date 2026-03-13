@@ -219,7 +219,6 @@ body:has(button:hover) .cursor-ring {
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--grey-light);
-    animation: fadeUp 0.8s var(--ease-out) 1.2s forwards;
 }
 
 .availability-dot {
@@ -285,7 +284,6 @@ body:has(button:hover) .cursor-ring {
     margin-top: 56px;
     padding-top: 28px;
     border-top: 1px solid rgba(255,255,255,0.07);
-    animation: fadeUp 0.8s var(--ease-out) 2s forwards;
 }
 
 .hero-sub p {
@@ -343,7 +341,6 @@ body:has(button:hover) .cursor-ring {
     margin-top: 56px;
     padding-top: 28px;
     border-top: 1px solid rgba(255,255,255,0.07);
-    animation: fadeUp 0.8s var(--ease-out) 2.2s forwards;
 }
 
 .meta-item { display: flex; flex-direction: column; gap: 4px; }
@@ -362,7 +359,6 @@ body:has(button:hover) .cursor-ring {
     flex-direction: column;
     align-items: center;
     gap: 8px;
-    animation: fadeUp 0.8s var(--ease-out) 2.5s forwards;
 }
 
 .scroll-line {
