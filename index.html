@@ -57,6 +57,12 @@
         <a href="#contact" class="mobile-link mobile-cta">Hablemos</a>
     </div>
 
+    <style>
+        @keyframes fadeUpIn {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
     <!-- HERO -->
     <section class="hero" id="hero">
         <div class="hero-eyebrow">
@@ -65,22 +71,22 @@
         </div>
 
         <div class="hero-headline">
-            <div class="headline-line" data-reveal>
+            <div class="headline-line" data-reveal style="animation: fadeUpIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0;">
                 <span>ARQUITECTO</span>
             </div>
-            <div class="headline-line italic" data-reveal>
+            <div class="headline-line italic" data-reveal style="animation: fadeUpIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards; opacity: 0;">
                 <span>de realidad</span>
             </div>
-            <div class="headline-line" data-reveal>
+            <div class="headline-line" data-reveal style="animation: fadeUpIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards; opacity: 0;">
                 <span>DIGITAL.</span>
             </div>
         </div>
 
-        <div class="hero-sub">
+        <div class="hero-sub" style="animation: fadeUpIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards; opacity: 0;">
             <p>Diseño + Desarrollo Web/App + IA + Estrategia.<br>Todo el departamento digital en un solo perfil.</p>
-            <div class="hero-actions">
-                <a href="#work" class="btn-primary">Ver proyectos</a>
-                <a href="#contact" class="btn-ghost">Contactar</a>
+            <div class="hero-actions" style="animation: fadeUpIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards; opacity: 0;">
+                <a href="#work" class="btn-primary" style="transition: all 0.4s ease; box-shadow: 0 0 0 rgba(201, 185, 154, 0);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 24px rgba(201, 185, 154, 0.25)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 0 0 rgba(201, 185, 154, 0)';">Ver proyectos</a>
+                <a href="#contact" class="btn-ghost" style="transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.background='rgba(201, 185, 154, 0.05)';" onmouseout="this.style.transform='translateY(0)'; this.style.background='transparent';">Contactar</a>
             </div>
         </div>
 
@@ -99,10 +105,7 @@
             </div>
         </div>
 
-        <div class="hero-scroll-hint">
-            <div class="scroll-line"></div>
-            <span>Scroll</span>
-        </div>
+
     </section>
 
     <!-- MARQUEE DE HERRAMIENTAS -->
@@ -151,9 +154,9 @@
 
             <!-- Proyecto grande: CERTIO -->
             <article class="project-item project-large" data-project>
-                <div class="project-image-wrap">
-                    <img src="proyecto3.jpg" alt="CERTIO: Protocolo de Confianza" loading="lazy">
-                    <div class="project-image-overlay"></div>
+                <div class="project-image-wrap" style="overflow: hidden; border-radius: 4px;">
+                    <img src="proyecto3.jpg" alt="CERTIO: Protocolo de Confianza" loading="lazy" style="transition: transform 0.6s var(--ease-out), filter 0.6s var(--ease-out);" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(0.9)';" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)';">
+                    <div class="project-image-overlay" style="pointer-events: none;"></div>
                 </div>
                 <div class="project-info">
                     <div class="project-meta-row">
@@ -162,17 +165,17 @@
                     </div>
                     <h3 class="project-name">CERTIO</h3>
                     <p class="project-desc">Plataforma de trazabilidad inmutable sobre <strong>Polygon</strong> con notas de cata generadas por <strong>Gemini Pro</strong>. Hemos jubilado los sellos de papel garantizando origen y pureza del aceite de oliva.</p>
-                    <a href="https://certio.vercel.app" target="_blank" rel="noopener" class="project-link">
-                        Ver proyecto <i class="fa-solid fa-arrow-right"></i>
+                    <a href="https://certio.vercel.app" target="_blank" rel="noopener" class="project-link" style="padding: 10px 20px; border: 1px solid var(--accent); background: transparent; color: var(--accent); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; border-radius: 2px; transition: all 0.3s; width: fit-content; text-decoration: none; align-items: center; justify-content: center;" onmouseover="this.style.background='var(--accent)'; this.style.color='var(--black)';" onmouseout="this.style.background='transparent'; this.style.color='var(--accent)';">
+                        Ver proyecto <i class="fa-solid fa-arrow-right" style="margin-left: 6px;"></i>
                     </a>
                 </div>
             </article>
 
             <!-- Proyecto: Mezquita Guadaíra -->
             <article class="project-item" data-project>
-                <div class="project-image-wrap">
-                    <img src="proyecto2.png" alt="Mezquita Guadaíra Digital" loading="lazy">
-                    <div class="project-image-overlay"></div>
+                <div class="project-image-wrap" style="overflow: hidden; border-radius: 4px;">
+                    <img src="proyecto2.png" alt="Mezquita Guadaíra Digital" loading="lazy" style="transition: transform 0.6s var(--ease-out), filter 0.6s var(--ease-out);" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(0.9)';" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)';">
+                    <div class="project-image-overlay" style="pointer-events: none;"></div>
                 </div>
                 <div class="project-info">
                     <div class="project-meta-row">
@@ -181,17 +184,17 @@
                     </div>
                     <h3 class="project-name">Mezquita Guadaíra</h3>
                     <p class="project-desc">Portal web de alto impacto visual y estrategia de contenidos para unificar la identidad digital de la comunidad.</p>
-                    <a href="https://fusaman.github.io/mezquitaguadaira/" target="_blank" rel="noopener" class="project-link">
-                        Ver proyecto <i class="fa-solid fa-arrow-right"></i>
+                    <a href="https://fusaman.github.io/mezquitaguadaira/" target="_blank" rel="noopener" class="project-link" style="padding: 10px 20px; border: 1px solid var(--accent); background: transparent; color: var(--accent); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; border-radius: 2px; transition: all 0.3s; width: fit-content; text-decoration: none; align-items: center; justify-content: center;" onmouseover="this.style.background='var(--accent)'; this.style.color='var(--black)';" onmouseout="this.style.background='transparent'; this.style.color='var(--accent)';">
+                        Ver proyecto <i class="fa-solid fa-arrow-right" style="margin-left: 6px;"></i>
                     </a>
                 </div>
             </article>
 
             <!-- Proyecto: EdTech -->
             <article class="project-item" data-project>
-                <div class="project-image-wrap">
-                    <img src="proyecto1.png" alt="Ecosistema EdTech 360º" loading="lazy">
-                    <div class="project-image-overlay"></div>
+                <div class="project-image-wrap" style="overflow: hidden; border-radius: 4px;">
+                    <img src="proyecto1.png" alt="Ecosistema EdTech 360º" loading="lazy" style="transition: transform 0.6s var(--ease-out), filter 0.6s var(--ease-out);" onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(0.9)';" onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1)';">
+                    <div class="project-image-overlay" style="pointer-events: none;"></div>
                 </div>
                 <div class="project-info">
                     <div class="project-meta-row">
@@ -200,8 +203,8 @@
                     </div>
                     <h3 class="project-name">Ecosistema EdTech 360º</h3>
                     <p class="project-desc">Digitalización integral para DTalento. Gestión escalable de alumnos, automatización de procesos y retención.</p>
-                    <a href="https://dtalento.es/" target="_blank" rel="noopener" class="project-link">
-                        Ver proyecto <i class="fa-solid fa-arrow-right"></i>
+                    <a href="https://dtalento.es/" target="_blank" rel="noopener" class="project-link" style="padding: 10px 20px; border: 1px solid var(--accent); background: transparent; color: var(--accent); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; border-radius: 2px; transition: all 0.3s; width: fit-content; text-decoration: none; align-items: center; justify-content: center;" onmouseover="this.style.background='var(--accent)'; this.style.color='var(--black)';" onmouseout="this.style.background='transparent'; this.style.color='var(--accent)';">
+                        Ver proyecto <i class="fa-solid fa-arrow-right" style="margin-left: 6px;"></i>
                     </a>
                 </div>
             </article>
@@ -246,7 +249,7 @@
                     <h3 class="exp-role">Digital Manager & Web Lead</h3>
                     <p class="exp-desc">Diseño de experiencia web inmersiva y gestión estratégica de Redes Sociales. Creación de comunidad digital de alto impacto.</p>
                     <div class="exp-tags">
-                        <span>Web Design</span><span>Social Media</span>
+                        <span>Diseño Web</span><span>Redes Sociales</span>
                     </div>
                 </div>
             </div>
@@ -260,7 +263,7 @@
                     <h3 class="exp-role">Digital Solopreneur</h3>
                     <p class="exp-desc">Desarrollo de Apps y Webs a medida. Implementación de IA para automatización de negocios locales y marcas del futuro.</p>
                     <div class="exp-tags">
-                        <span>Full Stack</span><span>AI Automation</span>
+                        <span>Desarrollo Integral</span><span>Automatización con IA</span>
                     </div>
                 </div>
             </div>
@@ -279,50 +282,68 @@
 
         <div class="arsenal-grid">
 
-            <div class="arsenal-card card-formation" data-arsenal>
-                <div class="arsenal-card-label">Formación</div>
-                <div class="formation-item">
-                    <div class="formation-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                    <div>
-                        <h4>Stanford Online</h4>
-                        <p>Doble Especialización</p>
-                        <ul>
-                            <li>Cybersecurity Analyst</li>
-                            <li>Software Testing & QA</li>
-                        </ul>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-bottom: 32px;">
+                <div class="arsenal-card card-formation" data-arsenal style="background: var(--grey-dark); border: 1px solid rgba(255,255,255,0.06); padding: 32px; border-radius: 4px; transition: all 0.4s var(--ease-out); position: relative; overflow: hidden;" onmouseover="this.style.borderColor='var(--accent)'; this.style.transform='translateY(-4px)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.transform='translateY(0)';">
+                    <div style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px;">Formación</div>
+                    <div class="formation-item" style="display: flex; gap: 16px; margin-bottom: 32px;">
+                        <div class="formation-icon" style="color: var(--accent); font-size: 20px; flex-shrink: 0; margin-top: 2px;"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <div style="flex: 1;">
+                            <h4 style="font-family: var(--font-serif); font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 6px; line-height: 1.2;">Stanford Online</h4>
+                            <p style="font-size: 13px; color: var(--grey-light); margin-bottom: 16px; font-weight: 500;">Doble Especialización</p>
+                            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+                                <li style="font-size: 13px; color: var(--grey-light); position: relative; padding-left: 16px;"><span style="position: absolute; left: 0; top: 8px; width: 4px; height: 4px; background: var(--accent); border-radius: 50%;"></span>Analista de Ciberseguridad</li>
+                                <li style="font-size: 13px; color: var(--grey-light); position: relative; padding-left: 16px;"><span style="position: absolute; left: 0; top: 8px; width: 4px; height: 4px; background: var(--accent); border-radius: 50%;"></span>Pruebas de Software</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="formation-item formation-secondary" style="display: flex; gap: 16px; opacity: 0.85;">
+                        <div class="formation-icon" style="color: var(--accent); font-size: 20px; flex-shrink: 0; margin-top: 2px;"><i class="fa-solid fa-certificate"></i></div>
+                        <div style="flex: 1;">
+                            <h4 style="font-family: var(--font-serif); font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 6px; line-height: 1.2;">Formación Oficial</h4>
+                            <p style="font-size: 13px; color: var(--grey-light); line-height: 1.6;">🇪🇸 España — Cert. Profesional: Gestión Comercial & Admin.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="formation-item formation-secondary">
-                    <div class="formation-icon"><i class="fa-solid fa-certificate"></i></div>
-                    <div>
-                        <h4>Formación Oficial</h4>
-                        <p>🇪🇸 España — Cert. Profesional: Gestión Comercial & Admin.</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="arsenal-card card-languages" data-arsenal>
-                <div class="arsenal-card-label">Idiomas</div>
-                <div class="lang-list">
-                    <div class="lang-item">
-                        <span class="lang-name">Español</span>
-                        <div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div>
-                        <span class="lang-level">Nativo</span>
-                    </div>
-                    <div class="lang-item">
-                        <span class="lang-name">Inglés</span>
-                        <div class="lang-bar"><div class="lang-fill" style="width:85%"></div></div>
-                        <span class="lang-level">C1</span>
-                    </div>
-                    <div class="lang-item">
-                        <span class="lang-name">Catalán</span>
-                        <div class="lang-bar"><div class="lang-fill" style="width:65%"></div></div>
-                        <span class="lang-level">B2</span>
-                    </div>
-                    <div class="lang-item">
-                        <span class="lang-name">Árabe</span>
-                        <div class="lang-bar"><div class="lang-fill" style="width:25%"></div></div>
-                        <span class="lang-level">Básico</span>
+                <div class="arsenal-card card-languages" data-arsenal style="background: var(--grey-dark); border: 1px solid rgba(255,255,255,0.06); padding: 32px; border-radius: 4px; transition: all 0.4s var(--ease-out); position: relative; overflow: hidden;" onmouseover="this.style.borderColor='var(--accent)'; this.style.transform='translateY(-4px)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.transform='translateY(0)';">
+                    <div style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px;">Idiomas</div>
+                    <div class="lang-list" style="display: flex; flex-direction: column; gap: 16px;">
+                        <div class="lang-item" style="display: flex; flex-direction: column; gap: 10px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.04);">
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <span class="lang-name" style="font-size: 15px; color: var(--white); font-weight: 500;">Español</span>
+                                <span class="lang-level" style="padding: 4px 10px; background: rgba(201, 185, 154, 0.08); border: 1px solid rgba(201, 185, 154, 0.2); border-radius: 20px; color: var(--accent); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">Nativo</span>
+                            </div>
+                            <div class="lang-bar" style="width: 100%; height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden;">
+                                <div class="lang-fill" style="height: 100%; width: 100%; background: var(--accent); border-radius: 2px;"></div>
+                            </div>
+                        </div>
+                        <div class="lang-item" style="display: flex; flex-direction: column; gap: 10px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.04);">
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <span class="lang-name" style="font-size: 15px; color: var(--white); font-weight: 500;">Inglés</span>
+                                <span class="lang-level" style="padding: 4px 10px; background: rgba(201, 185, 154, 0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; color: var(--grey-light); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;">C1</span>
+                            </div>
+                            <div class="lang-bar" style="width: 100%; height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden;">
+                                <div class="lang-fill" style="height: 100%; width: 85%; background: rgba(201, 185, 154, 0.7); border-radius: 2px;"></div>
+                            </div>
+                        </div>
+                        <div class="lang-item" style="display: flex; flex-direction: column; gap: 10px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.04);">
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <span class="lang-name" style="font-size: 15px; color: var(--white); font-weight: 500;">Catalán</span>
+                                <span class="lang-level" style="padding: 4px 10px; background: rgba(201, 185, 154, 0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; color: var(--grey-light); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;">B2</span>
+                            </div>
+                            <div class="lang-bar" style="width: 100%; height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden;">
+                                <div class="lang-fill" style="height: 100%; width: 65%; background: rgba(201, 185, 154, 0.5); border-radius: 2px;"></div>
+                            </div>
+                        </div>
+                        <div class="lang-item" style="display: flex; flex-direction: column; gap: 10px;">
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <span class="lang-name" style="font-size: 15px; color: var(--white); font-weight: 500;">Árabe</span>
+                                <span class="lang-level" style="padding: 4px 10px; background: rgba(201, 185, 154, 0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; color: var(--grey-light); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;">Básico</span>
+                            </div>
+                            <div class="lang-bar" style="width: 100%; height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden;">
+                                <div class="lang-fill" style="height: 100%; width: 25%; background: rgba(201, 185, 154, 0.3); border-radius: 2px;"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -330,15 +351,59 @@
             <div class="arsenal-card card-tools" data-arsenal>
                 <div class="arsenal-card-label">Setup & Licencias PRO</div>
                 <p class="tools-desc">Infraestructura propia. <strong>Valor añadido inmediato.</strong></p>
-                <div class="tools-grid">
-                    <div class="tool-chip"><i class="fa-solid fa-laptop"></i> MacBook M2</div>
-                    <div class="tool-chip"><i class="fa-solid fa-gem"></i> Gemini Pro</div>
-                    <div class="tool-chip"><i class="fa-solid fa-palette"></i> Canva Pro</div>
-                    <div class="tool-chip"><i class="fa-solid fa-layer-group"></i> Adobe Suite</div>
-                    <div class="tool-chip"><i class="fa-brands fa-figma"></i> Figma</div>
-                    <div class="tool-chip"><i class="fa-brands fa-react"></i> React</div>
-                    <div class="tool-chip"><i class="fa-brands fa-wordpress"></i> WordPress</div>
-                    <div class="tool-chip"><i class="fa-solid fa-bolt"></i> Zapier</div>
+                <div class="tools-categories" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 24px;">
+                    <!-- Tarjeta 1 -->
+                    <div class="tool-column" style="background: var(--grey-dark); border: 1px solid rgba(255,255,255,0.06); padding: 32px; border-radius: 4px; transition: all 0.4s var(--ease-out); position: relative; overflow: hidden;" onmouseover="this.style.borderColor='var(--accent)'; this.style.transform='translateY(-4px)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.transform='translateY(0)';">
+                        <div style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px;">01. Desarrollo e IA</div>
+                        <div style="display: flex; flex-direction: column; gap: 16px;">
+                            <div class="tool-item" style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--grey-light); transition: color 0.3s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--grey-light)'">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                                React
+                            </div>
+                            <div class="tool-item" style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--grey-light); transition: color 0.3s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--grey-light)'">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+                                WordPress
+                            </div>
+                            <div class="tool-item" style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--grey-light); transition: color 0.3s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--grey-light)'">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>
+                                Zapier
+                            </div>
+                            <div class="tool-item" style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--grey-light); transition: color 0.3s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--grey-light)'">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M12 3v18"></path><circle cx="12" cy="12" r="4"></circle></svg>
+                                Gemini Pro
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 2 -->
+                    <div class="tool-column" style="background: var(--grey-dark); border: 1px solid rgba(255,255,255,0.06); padding: 32px; border-radius: 4px; transition: all 0.4s var(--ease-out); position: relative; overflow: hidden;" onmouseover="this.style.borderColor='var(--accent)'; this.style.transform='translateY(-4px)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.transform='translateY(0)';">
+                        <div style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px;">02. Diseño y Creatividad</div>
+                        <div style="display: flex; flex-direction: column; gap: 16px;">
+                            <div class="tool-item" style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--grey-light); transition: color 0.3s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--grey-light)'">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"></path><path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"></path><path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z"></path><path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z"></path><path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z"></path></svg>
+                                Figma
+                            </div>
+                            <div class="tool-item" style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--grey-light); transition: color 0.3s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--grey-light)'">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line><line x1="12" y1="8" x2="12" y2="16"></line></svg>
+                                Adobe Suite
+                            </div>
+                            <div class="tool-item" style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--grey-light); transition: color 0.3s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--grey-light)'">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                Canva Pro
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 3 -->
+                    <div class="tool-column" style="background: var(--grey-dark); border: 1px solid rgba(255,255,255,0.06); padding: 32px; border-radius: 4px; transition: all 0.4s var(--ease-out); position: relative; overflow: hidden;" onmouseover="this.style.borderColor='var(--accent)'; this.style.transform='translateY(-4px)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.transform='translateY(0)';">
+                        <div style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px;">03. Infraestructura</div>
+                        <div style="display: flex; flex-direction: column; gap: 16px;">
+                            <div class="tool-item" style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--grey-light); transition: color 0.3s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--grey-light)'">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="20" x2="22" y2="20"></line></svg>
+                                MacBook M2
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -346,25 +411,44 @@
     </section>
 
     <!-- CONTACTO -->
-    <section id="contact" class="section contact-section">
-        <div class="contact-inner">
-            <div class="section-label">04 — Contacto</div>
-            <h2 class="contact-headline">
-                ¿Hablamos<br>de <em>negocio?</em>
-            </h2>
-            <p class="contact-sub">Estrategia, Diseño y Código en un solo lugar.</p>
-            <a href="mailto:cmismaelsegura@gmail.com" class="contact-email">
-                cmismaelsegura@gmail.com
-            </a>
-            <div class="contact-links">
-                <a href="https://www.linkedin.com/in/ismaelbuitrago" target="_blank" rel="noopener" class="contact-social">
-                    LinkedIn <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-                <a href="https://wa.me/34653257414" target="_blank" rel="noopener" class="contact-social">
-                    WhatsApp <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-                <a href="cv-ismael-segura.pdf" download class="contact-social">
-                    Descargar CV <i class="fa-solid fa-file-arrow-down"></i>
+    <section id="contact" class="section contact-section" style="padding: 120px 0; border-top: 1px solid rgba(255,255,255,0.03); position: relative; overflow: hidden;">
+        <!-- Background glow for extra visual power -->
+        <div style="position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(201, 185, 154, 0.04) 0%, transparent 60%); pointer-events: none; z-index: -1;"></div>
+        
+        <div class="contact-inner" style="display: flex; flex-direction: column; gap: 80px; position: relative; z-index: 1;">
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 64px; align-items: start;">
+                <div>
+                    <div class="section-label" style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 32px; display: inline-flex; align-items: center; gap: 12px;">
+                        <span style="width: 8px; height: 8px; background: var(--accent); border-radius: 50%;"></span>
+                        04 — Contacto
+                    </div>
+                    <h2 class="contact-headline" style="font-family: var(--font-serif); font-size: clamp(3.5rem, 7vw, 6rem); line-height: 1.05; font-weight: 500; color: var(--white); margin: 0; letter-spacing: -0.02em;">
+                        ¿Hablamos<br>de <em style="color: var(--accent); font-style: normal; position: relative; display: inline-block;">negocio?<svg width="100%" height="16" viewBox="0 0 200 16" fill="none" style="position: absolute; bottom: -8px; left: 0; pointer-events: none;"><path d="M2.0003 13.9998C49.9142 5.08316 112.981 -2.00015 198.001 5.99987" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/></svg></em>
+                    </h2>
+                </div>
+                <div style="padding-top: 12px; display: flex; flex-direction: column; justify-content: center; height: 100%;">
+                    <p class="contact-sub" style="font-size: 20px; color: var(--grey-light); line-height: 1.6; margin-bottom: 40px; max-width: 480px;">
+                        Estrategia, Diseño y Código en un solo lugar. <br>Estoy listo para elevar tu presencia digital al siguiente nivel.
+                    </p>
+                    <a href="mailto:cmismaelsegura@gmail.com" class="contact-email" style="display: inline-flex; align-items: center; width: fit-content; gap: 20px; font-size: clamp(1.2rem, 2.5vw, 2.2rem); font-family: var(--font-serif); color: var(--white); text-decoration: none; padding-bottom: 12px; border-bottom: 2px solid rgba(255,255,255,0.1); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);" onmouseover="this.style.color='var(--accent)'; this.style.borderBottomColor='var(--accent)'; this.style.gap='32px';" onmouseout="this.style.color='var(--white)'; this.style.borderBottomColor='rgba(255,255,255,0.1)'; this.style.gap='20px';">
+                        cmismaelsegura@gmail.com 
+                        <i class="fa-solid fa-arrow-right" style="font-size: clamp(1rem, 2vw, 1.5rem); color: var(--accent);"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-links" style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; padding-top: 48px; border-top: 1px solid rgba(255,255,255,0.05);">
+                <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                    <a href="https://www.linkedin.com/in/ismaelbuitrago" target="_blank" rel="noopener" class="contact-social" style="padding: 16px 32px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 40px; color: var(--white); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: inline-flex; align-items: center; gap: 12px;" onmouseover="this.style.background='var(--white)'; this.style.color='var(--black)'; this.style.borderColor='var(--white)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='rgba(255,255,255,0.03)'; this.style.color='var(--white)'; this.style.borderColor='rgba(255,255,255,0.08)'; this.style.transform='translateY(0)';">
+                        LinkedIn <i class="fa-brands fa-linkedin-in" style="font-size: 14px;"></i>
+                    </a>
+                    <a href="https://wa.me/34653257414" target="_blank" rel="noopener" class="contact-social" style="padding: 16px 32px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 40px; color: var(--white); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: inline-flex; align-items: center; gap: 12px;" onmouseover="this.style.background='var(--white)'; this.style.color='var(--black)'; this.style.borderColor='var(--white)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='rgba(255,255,255,0.03)'; this.style.color='var(--white)'; this.style.borderColor='rgba(255,255,255,0.08)'; this.style.transform='translateY(0)';">
+                        WhatsApp <i class="fa-brands fa-whatsapp" style="font-size: 14px;"></i>
+                    </a>
+                </div>
+                <a href="cv-ismael-segura.pdf" download class="contact-social" style="padding: 16px 40px; background: var(--accent); border: 1px solid var(--accent); border-radius: 40px; color: var(--black); font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: inline-flex; align-items: center; gap: 12px; box-shadow: 0 8px 32px rgba(201, 185, 154, 0.15);" onmouseover="this.style.background='transparent'; this.style.color='var(--accent)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 12px 40px rgba(201, 185, 154, 0.25)';" onmouseout="this.style.background='var(--accent)'; this.style.color='var(--black)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 32px rgba(201, 185, 154, 0.15)';">
+                    Descargar CV <i class="fa-solid fa-file-arrow-down" style="font-size: 15px;"></i>
                 </a>
             </div>
         </div>
