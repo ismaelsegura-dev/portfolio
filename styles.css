@@ -598,37 +598,62 @@ body:has(button:hover) .cursor-ring {
 .experience-list {
     display: flex;
     flex-direction: column;
+    gap: 0;
 }
 
 .exp-item {
     display: grid;
-    grid-template-columns: 260px 1fr;
-    gap: 48px;
-    padding: 48px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    grid-template-columns: 220px 1fr;
+    gap: 60px;
+    padding: 64px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
     opacity: 1;
     transform: translateY(0);
-    transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+    transition: all 0.6s var(--ease-out);
+    position: relative;
 }
+
+.exp-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 0;
+    background: var(--accent);
+    transition: height 0.8s var(--ease-out) 0.2s;
+}
+
+.exp-item:hover::before {
+    height: 100%;
+}
+
 .exp-item.visible { opacity: 1; transform: translateY(0); }
 
 .exp-left {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    padding-top: 4px;
+    gap: 8px;
+    padding-top: 8px;
+    position: sticky;
+    top: calc(var(--nav-height) + 40px);
+    height: fit-content;
 }
 
 .exp-period {
-    font-size: 10px;
-    letter-spacing: 0.14em;
+    font-size: 9px;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--accent);
+    font-weight: 500;
+    opacity: 0.9;
 }
 
 .exp-company {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--grey-light);
+    font-weight: 400;
+    letter-spacing: 0.02em;
 }
 
 .exp-right {
@@ -639,34 +664,44 @@ body:has(button:hover) .cursor-ring {
 
 .exp-role {
     font-family: var(--font-serif);
-    font-size: clamp(18px, 2vw, 28px);
+    font-size: clamp(20px, 2.2vw, 32px);
     font-weight: 700;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
     color: var(--white);
-    line-height: 1.2;
+    line-height: 1.15;
+    margin-bottom: 4px;
 }
 
 .exp-desc {
-    font-size: 14px;
+    font-size: 15px;
     color: var(--grey-light);
-    line-height: 1.65;
+    line-height: 1.7;
+    margin-bottom: 8px;
 }
 
 .exp-tags {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     flex-wrap: wrap;
-    margin-top: 8px;
+    margin-top: 12px;
 }
 
 .exp-tags span {
-    font-size: 11px;
-    padding: 4px 10px;
-    background: rgba(201, 185, 154, 0.1);
-    border: 1px solid rgba(201, 185, 154, 0.2);
-    border-radius: 2px;
+    font-size: 10px;
+    padding: 6px 12px;
+    background: rgba(201, 185, 154, 0.08);
+    border: 1px solid rgba(201, 185, 154, 0.25);
+    border-radius: 1px;
     color: var(--accent);
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.exp-item:hover .exp-tags span {
+    background: rgba(201, 185, 154, 0.15);
+    border-color: var(--accent);
 }
 
 /* --- ARSENAL --- */
@@ -954,7 +989,13 @@ body:has(button:hover) .cursor-ring {
 
     .exp-item {
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 20px;
+        padding: 40px 0;
+    }
+
+    .exp-left {
+        position: static;
+        top: auto;
     }
 
     .footer-inner {
